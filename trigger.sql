@@ -78,19 +78,15 @@ FOR EACH ROW
 DECLARE 
 CONTATORE DATE;
 ERRORE EXCEPTION;
-
 BEGIN
 SELECT MAX(Data_Trattamento) INTO CONTATORE FROM Trattamento_Subito WHERE (NomeV = :NEW.NomeV);
-
 IF (CONTATORE - :NEW.Data_Trattamento )/30 <= 2  THEN 
     RAISE ERRORE;
 END IF;
-
 EXCEPTION
 WHEN others THEN
     RAISE_APPLICATION_ERROR(-2000,' VIGNETO GIA TRATTATO DA MENO DI DUE MESI');
 END;
-
 
 CREATE OR REPLACE TRIGGER Limite_Intervento
 BEFORE INSERT on Interventi_Subiti
@@ -98,14 +94,11 @@ FOR EACH ROW
 DECLARE 
 CONTATORE DATE;
 ERRORE EXCEPTION;
-
 BEGIN
 SELECT MAX(Data_Intervento) INTO CONTATORE FROM Interventi_Subiti WHERE (NomeV = :NEW.NomeV);
-
-IF ( (CONTATORE - :NEW.Data_Intervento)) < 21  THEN 
+IF (CONTATORE - :NEW.Data_Intervento) < 21  THEN 
     RAISE ERRORE;
 END IF;
-
 EXCEPTION
 WHEN others THEN
     RAISE_APPLICATION_ERROR(-2000,' Gia Fatto Intervento DA MENO DI Tre Settimane');
@@ -124,6 +117,9 @@ select Prezzo_Vendita into Costo from Vendita;
 Sovrapprezzo := (Costo * 40)/100;
 if :new.Nome_Cliente = 'Camastra' then 
 Costo := Costo + Sovrapprezzo;
+end if;
+ELSE if :new.Nome_Cliente = 'Maratea' then
+Costo := 0
 end if;
 end;
 
