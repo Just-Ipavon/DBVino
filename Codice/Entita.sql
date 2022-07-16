@@ -95,7 +95,7 @@ CREATE TABLE Pigiatura(
 
     CONSTRAINT CE_Mosto_Pigiatura FOREIGN KEY (Num_Lotto_Mosto)  REFERENCES Mosto (Num_Lotto_Mosto) ON DELETE CASCADE;
     CONSTRAINT CE_Tipo_Uva_Pigiatura FOREIGN KEY (Specie)  REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE;
-)
+);
 
 CREATE TABLE Mosto(  
     Num_Lotto_Mosto Number(4,0) NOT NULL, 
