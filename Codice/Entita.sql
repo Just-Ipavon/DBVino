@@ -39,7 +39,7 @@ CREATE TABLE Tipo_Vino(
     Gradazione Number(4,2) NOT NULL, 
     Temp_Servizio Number(4,2) NOT NULL,
 	Tannini Number(2,0) NOT NULL,
-    Zuccheri_NF Number(2,0) NOT NULL
+    Zuccheri_NF Number(2,0) NOT NULL,
     
     CONSTRAINT CP_Tipo_Vino PRIMARY KEY (Nome_Vino)
 );
@@ -122,6 +122,7 @@ CREATE TABLE Carrello(
 CREATE TABLE Lotto_Vino(
     Num_Lotto Number(4,0) NOT NULL, 
     Quantita_Vino Number(5,2) NOT NULL,
+    Quantita_Mosto Number(5,2) NOT NULL,
     Num_Lotto_Mosto Number(4,0) NOT NULL,
     Nome_Vino varchar(255) NOT NULL,
     Data_Lotto DATE NOT NULL,
@@ -129,7 +130,7 @@ CREATE TABLE Lotto_Vino(
     Costo_Fermentazione Number NOT NULL,
    
 
-    CONSTRAINT CE_Lotto_Mosto FOREIGN KEY(Num_Lotto_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto) ON DELETE CASCADE,
+    CONSTRAINT CE_Lotto_Mosto FOREIGN KEY(Num_Lotto_Mosto, Quantita_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto, Quantita_Mosto) ON DELETE CASCADE,
     CONSTRAINT CE_Lotto_Tipo_Vino FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino (Nome_Vino) ON DELETE CASCADE,
     CONSTRAINT CE_Lotto_Imbott FOREIGN KEY(Nome_Imbott)  REFERENCES Imbottigliatore(Nome_Imbott) ON DELETE CASCADE,
     CONSTRAINT CP_Lotto_Vino PRIMARY KEY (Num_Lotto)
@@ -170,7 +171,7 @@ CREATE TABLE Confezione(
     Num_Lotto number(255) NOT NULL,
     Codice_Acquisto Number(6,0) NULL,
     Prezzo_Conf Number(4,2) NOT NULL, 
-    #Bott_Conf Number(3,0) not NULL,
+    Num_Bott_Conf Number(3,0) not NULL,
 
     CONSTRAINT CE_Carrello_Conf FOREIGN KEY (Codice_Acquisto) REFERENCES Carrello(Codice_Acquisto) ON DELETE CASCADE, 
     CONSTRAINT CE_Tipo_Vino_Confezione FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino(Nome_Vino) ON DELETE CASCADE,
@@ -182,7 +183,7 @@ CREATE TABLE Controllo_Certificazione(
     Nome_Vino varchar(255) NOT NULL, 
     Nome_Ente varchar(255) NOT NULL, 
     Num_Pratica Number(3,0) NOT NULL,
-	Data_Richiesta DATE NOT NULL, 
+	Data_Certif DATE NOT NULL,
     Esito NUMBER(1,0) NOT NULL, 
     Certificato_Richiesto varchar(255) NOT NULL,
 
@@ -204,7 +205,7 @@ CREATE TABLE Composizione_Vino(
 CREATE TABLE Interventi_Subiti(
     NomeV varchar(255) NOT NULL,
     ComuneV varchar(255) NOT NULL,
-    Num_Fattura_Intervento Number(3,0) not NULL
+    Num_Fattura_Intervento Number(3,0) NOT NULL,
     Data_Intervento DATE NOT NULL,
 
     CONSTRAINT CE_Vigneto_Interventi_Subiti FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,
