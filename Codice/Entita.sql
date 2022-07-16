@@ -173,7 +173,7 @@ CREATE TABLE Invecchiamento(
 
     CONSTRAINT CE_Botte_Invecchiamento FOREIGN KEY (Num_Botte) REFERENCES Botte(Num_Botte) ON DELETE CASCADE,
     CONSTRAINT CE_Lotto_Invecchiamento FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino(Num_Lotto) ON DELETE CASCADE,
-    CONSTRAINT CP_Botte PRIMARY KEY (Num_Botte,Num_Lotto) 
+    CONSTRAINT CP_Invecchiamento PRIMARY KEY (Num_Botte,Num_Lotto) 
 );
 
 CREATE TABLE Confezione( 
