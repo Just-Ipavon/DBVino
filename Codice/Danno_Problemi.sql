@@ -1,12 +1,4 @@
 
-CREATE TABLE Pigiatura(
-    Mosto_Prodotto Number(5,2),
-    Uva_Utilizzata  varchar(255),
-    Data_Raccolto_Usato DATE,
-    Quantita_Uva_Usata Number(4,2),
-    Costo_Pignatura Number(5,2),
-)
-
 CREATE TABLE Confezione( 
     Num_Conf number(4,0) NOT NULL,
     Codice_Acquisto number(3,0) not NULL,

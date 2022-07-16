@@ -87,14 +87,15 @@ CREATE TABLE Raccolto_Vigneto(
 );
 
 CREATE TABLE Pigiatura(
-    Num_Lotto_Mosto NUMBER,
-    Specie  varchar(255),
-    Data_Raccolto_Usato DATE,
-    Quantita_Uva_Usata  NUMBER,
-    Costo_Pignatura NUMBER,
+    Num_Lotto_Mosto Number(4,0) NOT NULL,
+    Specie varchar(255) NOT NULL,
+    Data_Raccolto_Usato DATE NOT NULL,
+    Quantita_Mosto Number NOT NULL,
+    Quantita_Uva_Usata Number NOT NULL,
+    Costo_Pigiatura Number NOT NULL,
 
-    CONSTRAINT CE_Mosto_Pigiatura FOREIGN KEY (Num_Lotto_Mosto)  REFERENCES Mosto (Num_Lotto_Mosto) ON DELETE CASCADE;
-    CONSTRAINT CE_Tipo_Uva_Pigiatura FOREIGN KEY (Specie)  REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE;
+    CONSTRAINT CE_Mosto_Pigiatura FOREIGN KEY (Num_Lotto_Mosto, Quantita_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto,Quantita_Mosto) ON DELETE CASCADE,
+    CONSTRAINT CE_Tipo_Uva_Pigiatura FOREIGN KEY (Specie)  REFERENCES Tipo_Uva(Specie) ON DELETE CASCADE
 );
 
 CREATE TABLE Mosto(  
