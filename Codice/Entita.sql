@@ -73,13 +73,16 @@ CREATE TABLE Sede_Vinif(
 );
 
 CREATE TABLE Raccolto_Vigneto(  
+    Specie varchar(255) NOT NULL,
     Data_Racc DATE NOT NULL,  
     NomeV varchar(255) NOT NULL,
-    Quantita Number(5,2) not NULL
-    ComuneV varchar(255) NOT NULL,  
+    ComuneV varchar(255) NOT NULL,
+    Quantita_Raccolto Number(5,2) not NULL,
+    Costo_Raccolta Number NOT NULL,  
      
+    CONSTRAINT CE_Tipo_Uva_Raccolto_Vigneto FOREIGN KEY (Specie)  REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE;
     CONSTRAINT CE_Vigneto_Raccolto_Vigneto FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE, 
-    CONSTRAINT CP_Raccolto_Vigneto PRIMARY KEY (Data_Racc) 
+    CONSTRAINT CP_Raccolto_Vigneto PRIMARY KEY (Data_Racc, Specie) 
 );
 
 CREATE TABLE Pigiatura(
@@ -89,13 +92,13 @@ CREATE TABLE Pigiatura(
     Quantita_Uva_Usata  NUMBER,
     Costo_Pignatura NUMBER,
 
-    CONSTRAINT CE_Pigiatura_Mosto FOREIGN KEY (Num_Lotto_Mosto)  REFERENCES Mosto (Num_Lotto_Mosto) ON DELETE CASCADE;
-    CONSTRAINT CE_Pigiatura_Tipo_Uva FOREIGN KEY (Specie)  REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE;
+    CONSTRAINT CE_Mosto_Pigiatura FOREIGN KEY (Num_Lotto_Mosto)  REFERENCES Mosto (Num_Lotto_Mosto) ON DELETE CASCADE;
+    CONSTRAINT CE_Tipo_Uva_Pigiatura FOREIGN KEY (Specie)  REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE;
 )
 
 CREATE TABLE Mosto(  
     Num_Lotto_Mosto Number(4,0) NOT NULL, 
-    Quantita_Mosto Number(3,0) NOT NULL,
+    Quantita_Mosto Number(5,2) NOT NULL,
     Nome_Sede varchar(255) NOT NULL, 
     Costo_Trasporto Number(4,0) NOT NULL,
     Data_Inizio_Ferm DATE NOT NULL,
@@ -108,7 +111,6 @@ CONSTRAINT CP_Mosto PRIMARY KEY (Num_Lotto_Mosto, Quantita_Mosto)
 CREATE TABLE Carrello(
     Ragione_Sociale varchar(255) NOT NULL, 
     Codice_Acquisto Number(4,0) NOT NULL, 
-    Metodo_Pagamento varchar(255) NOT NULL,
     Data_Acquisto DATE NOT NULL,
 
     CONSTRAINT CE_Cliente_Carrello FOREIGN KEY (Ragione_Sociale) REFERENCES Cliente (Ragione_Sociale) ON DELETE CASCADE, 
@@ -117,22 +119,26 @@ CREATE TABLE Carrello(
 
 CREATE TABLE Lotto_Vino(
     Num_Lotto Number(4,0) NOT NULL, 
+    Quantita_Vino Number(5,2) NOT NULL,
+    Num_Lotto_Mosto Number(4,0) NOT NULL,
     Nome_Vino varchar(255) NOT NULL,
     Data_Lotto DATE NOT NULL,
-    Num_Lotto_Mosto Number(4,0) NOT NULL,
-    Quantita Number(5,2) NOT NULL,
+    Nome_Imbott varchar(255) NOT NULL,
+    Costo_Fermentazione Number NOT NULL,
+   
 
-    CONSTRAINT CE_Lotto_M FOREIGN KEY(Num_Lotto_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto) ON DELETE CASCADE,
-    CONSTRAINT CE_Tipo_Vino_Controllo_Certificazione FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino (Nome_Vino) ON DELETE CASCADE,
+    CONSTRAINT CE_Lotto_Mosto FOREIGN KEY(Num_Lotto_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto) ON DELETE CASCADE,
+    CONSTRAINT CE_Lotto_Tipo_Vino FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino (Nome_Vino) ON DELETE CASCADE,
+    CONSTRAINT CE_Lotto_Imbott FOREIGN KEY(Nome_Imbott)  REFERENCES Imbottigliatore(Nome_Imbott) ON DELETE CASCADE,
     CONSTRAINT CP_Lotto_Vino PRIMARY KEY (Num_Lotto)
 );
 
 CREATE TABLE Botte(  
-    Num_Botte Number(3,0) NOT NULL,
-    Num_Lotto Number(4,0) NOT NULL,  
-    Tipo_Legno varchar(255) NOT NULL,  
+    Num_Botte Number(3,0) NOT NULL, 
+    Tipo_Legno varchar(255) NOT NULL,
+    Nome_Cantina varchar(255) NOT NULL,  
 
-    CONSTRAINT CE_Lotto_Vino_Botte FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino (Num_Lotto) ON DELETE CASCADE,
+    CONSTRAINT CE_Botte_Vino_Botte FOREIGN KEY (Nome_Cantina) REFERENCES Cantina(Nome_Cantina) ON DELETE CASCADE,
     CONSTRAINT CP_Botte PRIMARY KEY (Num_Botte) 
 );
 
@@ -141,19 +147,21 @@ CREATE TABLE Imbottigliatore(
     Via_Imbott varchar(255) NOT NULL, 
     CAP_Imbott Number(5,0) NOT NULL, 
     Citta_Imbott varchar(255) NOT NULL, 
-    Costo_Imb Number(5,2) not NULL,
 
     CONSTRAINT CP_Imbottigliatore PRIMARY KEY (Nome_Imbott)
 );
 
 CREATE TABLE Confezione( 
     Num_Conf Number(4,0) NOT NULL,
-    Codice_Acquisto Number(3,0) NULL,
-    Data_Acquisto date not NULL,
+    Nome_Vino varchar(255) NOT NULL,
+    Num_Lotto number(255) NOT NULL,
+    Codice_Acquisto Number(6,0) NULL,
     Prezzo_Conf Number(4,2) NOT NULL, 
     #Bott_Conf Number(3,0) not NULL,
 
     CONSTRAINT CE_Carrello_Conf FOREIGN KEY (Codice_Acquisto) REFERENCES Carrello(Codice_Acquisto) ON DELETE CASCADE, 
+    CONSTRAINT CE_Tipo_Vino_Confezione FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino(Nome_Vino) ON DELETE CASCADE,
+    CONSTRAINT CE_Lotto_Vino_Confezione FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino(Num_Lotto) ON DELETE CASCADE,
     CONSTRAINT CP_Confezione PRIMARY KEY (Num_Conf) 
 );
 
@@ -161,7 +169,7 @@ CREATE TABLE Controllo_Certificazione(
     Nome_Vino varchar(255) NOT NULL, 
     Nome_Ente varchar(255) NOT NULL, 
     Num_Pratica Number(3,0) NOT NULL,
-	Data_Certif DATE NOT NULL, //VA NELLA ASSOCIAZIONE
+	Data_Richiesta DATE NOT NULL, 
     Esito NUMBER(1,0) NOT NULL, 
     Certificato_Richiesto varchar(255) NOT NULL,
 
@@ -177,50 +185,27 @@ CREATE TABLE Composizione_Vino(
     
     CONSTRAINT CE_Tipo_Uva_Composizione_Vino_ FOREIGN KEY (Specie) REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE,
     CONSTRAINT CE_Tipo_Vino_Composizione_Vino FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino (Nome_Vino) ON DELETE CASCADE
-    
-);
-
-CREATE TABLE Vendemmia( 
-    Specie varchar(255) NOT NULL, 
-    NomeV varchar(255) not NULL, 
-    ComuneV varchar(255) not NULL,
-    Data_Racc DATE NOT NULL, 
-    Quantita Number(4,2) NOT NULL, 
-     
-    CONSTRAINT CE_Tipo_Uva_Vendemmia FOREIGN KEY (Specie) REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE, 
-    CONSTRAINT CE_Raccolto_Vigneto_Vendemmia FOREIGN KEY (Data_Racc) REFERENCES Raccolto_Vigneto (Data_Racc) ON DELETE CASCADE
-     
+    CONSTRAINT CP_CV PRIMARY KEY (Nome_Vino,Specie)
 );
 
 CREATE TABLE Interventi_Subiti(
     NomeV varchar(255) NOT NULL,
     ComuneV varchar(255) NOT NULL,
     Num_Fattura_Intervento Number(3,0) not NULL
-    
+    Data_Intervento DATE NOT NULL,
+
     CONSTRAINT CE_Vigneto_Interventi_Subiti FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,
     CONSTRAINT CE_Intervento_Interventi_Subiti FOREIGN KEY (Num_Fattura_Intervento) REFERENCES Intervento (Num_Fattura_Intervento) ON DELETE CASCADE
     
 );
 
-CREATE TABLE Coltivazione(
+CREATE TABLE Produzione_Vigneto(
     NomeV varchar(255) NOT NULL,
     ComuneV varchar(255) NOT NULL,
     Specie varchar(255) NOT NULL,
-    Comune_Provenienza varchar(255) NOT NULL,
     
-    CONSTRAINT CE_Vigneto_Coltivazione FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,
-    CONSTRAINT CE_Tipo_Uva_Coltivazione FOREIGN KEY (Specie) REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE
-    
-);
-
-CREATE TABLE Composizione_Lotto(
-    Nome_Vino varchar(255) NOT NULL,
-    Num_Lotto Number(3,0) NOT NULL,
-    Azienda_Imbott varchar(255) NOT NULL,
-    Volume_Nominale int NOT NULL,
-    
-    CONSTRAINT CE_Tipo_Vino_Composizione_Lotto FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino (Nome_Vino) ON DELETE CASCADE,
-    CONSTRAINT CE_Lotto_Vino_Composizione_Lotto FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino (Num_Lotto) ON DELETE CASCADE
+    CONSTRAINT CE_Vigneto_Produzione FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,
+    CONSTRAINT CE_Tipo_Uva_Produzione FOREIGN KEY (Specie) REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE
     
 );
 
@@ -228,6 +213,7 @@ CREATE TABLE Trattamento_Subito(
     NomeV varchar(255) NOT NULL,  
     ComuneV varchar(255) NOT NULL,  
     Num_Fattura_Trattamento Number(6,0) not NULL,
+    Data_Trattamento DATE NOT NULL,
       
     CONSTRAINT CE_Vigneto_Trattamento_Subito FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,  
     CONSTRAINT CE_Trattamento_Trattamento_Subito FOREIGN KEY (Num_Fattura_Trattamento) REFERENCES Trattamento (Num_Fattura_Trattamento) ON DELETE CASCADE
@@ -239,37 +225,7 @@ CREATE TABLE Cantina(
     Via_Cantina varchar(255) NOT NULL,  
     CAP_Cantina Number(5,0) NOT NULL, 
     Citta_Cantina varchar(255) NOT NULL, 
-    Nome_Sede varchar(255) NOT NULL,
-    Metratura_Cantina Number(5,1) NOT NULL,
-
-    CONSTRAINT CE_Lotto_Vino_Stoccaggio FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino (Num_Lotto) ON DELETE CASCADE,
-    CONSTRAINT CP_Cantina PRIMARY KEY (Nome_Cantina,Citta_Cantina,Via_Cantina)
-
-);
-
-CREATE TABLE Confezionamento(
-    Num_Conf Number(3,0) NOT NULL,
-    Num_Lotto Number(3,0) NOT NULL,
-    Data_Confezionamento DATE NOT NULL,
-    Num_Bottiglie_Confezionate Number(3,0) NOT NULL,
-    Formato_Confezionatura varchar(255) NOT NULL,
-      
-    CONSTRAINT CE_Lotto_Vino_Confezionamento FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino (Num_Lotto) ON DELETE CASCADE,
-    CONSTRAINT CE_Confezione_Confezionamento FOREIGN KEY (Num_Conf) REFERENCES Confezione (Num_Conf) ON DELETE CASCADE
-
-);
-
-CREATE TABLE Vendita(
-    Num_Lotto Number(3,0) NOT NULL,
-    Ragione_Sociale varchar(255) NOT NULL,
-    Codice_Acquisto Number(4,0) NOT NULL,
-    Metodo_Pagamento varchar(255) NOT NULL,
-    Num_Confezioni_Vendute Number(4,0) NOT NULL,
-    Categoria_Vino_Venduta varchar(255) NOT NULL,
-    Prezzo_Vendita Number(4,1) NOT NULL,
     
-    CONSTRAINT CE_Lotto_Vino_Vendita FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino (Num_Lotto) ON DELETE CASCADE,
-    CONSTRAINT CE_Cliente_Vendita FOREIGN KEY (Ragione_Sociale) REFERENCES Cliente (Ragione_Sociale)ON DELETE CASCADE,
-    CONSTRAINT CE_Carrello_Vendita FOREIGN KEY (Codice_Acquisto) REFERENCES Carrello (Codice_Acquisto)ON DELETE CASCADE
-    
+     CONSTRAINT CP_Cantina PRIMARY KEY (Nome_Cantina)
+
 );
