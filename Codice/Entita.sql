@@ -5,6 +5,7 @@ CREATE TABLE Vigneto(
     
     CONSTRAINT CP_Vigneto PRIMARY KEY (NomeV, ComuneV)
 );
+
 CREATE TABLE Tipo_Uva(
     Specie varchar(255) NOT NULL,
     Glucosio Number(5,2) NOT NULL,
@@ -51,7 +52,7 @@ CREATE TABLE Cliente(
 	Citta_Cl varchar(255) NOT NULL,
     
     CONSTRAINT CP_Cliente PRIMARY KEY (Ragione_Sociale)
-	);
+);
 
 CREATE TABLE Ente_Certif( 
     Nome_Ente varchar(255) NOT NULL,
@@ -103,9 +104,9 @@ CREATE TABLE Mosto(
     Costo_Trasporto Number(4,0) NOT NULL,
     Data_Inizio_Ferm DATE NOT NULL,
     Data_Fine_Ferm DATE NOT NULL,
- 
-CONSTRAINT CE_Sede_Vinif_Mosto FOREIGN KEY (Nome_Sede) REFERENCES Sede_Vinif (Nome_Sede) ON DELETE CASCADE,  
-CONSTRAINT CP_Mosto PRIMARY KEY (Num_Lotto_Mosto, Quantita_Mosto)  
+
+    CONSTRAINT CE_Sede_Vinif_Mosto FOREIGN KEY (Nome_Sede) REFERENCES Sede_Vinif (Nome_Sede) ON DELETE CASCADE,  
+    CONSTRAINT CP_Mosto PRIMARY KEY (Num_Lotto_Mosto, Quantita_Mosto)  
 );
 
 CREATE TABLE Carrello(
