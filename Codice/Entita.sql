@@ -81,7 +81,7 @@ CREATE TABLE Raccolto_Vigneto(
     Quantita_Raccolto Number(5,2) not NULL,
     Costo_Raccolta Number NOT NULL,  
      
-    CONSTRAINT CE_Tipo_Uva_Raccolto_Vigneto FOREIGN KEY (Specie)  REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE;
+    CONSTRAINT CE_Tipo_Uva_Raccolto_Vigneto FOREIGN KEY (Specie)  REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE,
     CONSTRAINT CE_Vigneto_Raccolto_Vigneto FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE, 
     CONSTRAINT CP_Raccolto_Vigneto PRIMARY KEY (Data_Racc, Specie) 
 );
@@ -152,7 +152,7 @@ CREATE TABLE Invecchiamento(
     Data_Fine_Inv date NOT NULL,
 
     CONSTRAINT CE_Botte_Invecchiamento FOREIGN KEY (Num_Botte) REFERENCES Botte(Num_Botte) ON DELETE CASCADE,
-    CONSTRAINT CE_Botte_Lotto_Vino FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino(Num_Lotto) ON DELETE CASCADE,
+    CONSTRAINT CE_Botte_Invecchiamento FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino(Num_Lotto) ON DELETE CASCADE,
     CONSTRAINT CP_Botte PRIMARY KEY (Num_Botte,Num_Lotto) 
 );
 
@@ -168,7 +168,7 @@ CREATE TABLE Imbottigliatore(
 CREATE TABLE Confezione( 
     Num_Conf Number(4,0) NOT NULL,
     Nome_Vino varchar(255) NOT NULL,
-    Num_Lotto number(255) NOT NULL,
+    Num_Lotto number(6,0) NOT NULL,
     Codice_Acquisto Number(6,0) NULL,
     Prezzo_Conf Number(4,2) NOT NULL, 
     Num_Bott_Conf Number(3,0) not NULL,
@@ -198,7 +198,7 @@ CREATE TABLE Composizione_Vino(
     Percentuale Number(3,1) NOT NULL,
     
     CONSTRAINT CE_Tipo_Uva_Composizione_Vino_ FOREIGN KEY (Specie) REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE,
-    CONSTRAINT CE_Tipo_Vino_Composizione_Vino FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino (Nome_Vino) ON DELETE CASCADE
+    CONSTRAINT CE_Tipo_Vino_Composizione_Vino FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino (Nome_Vino) ON DELETE CASCADE,
     CONSTRAINT CP_CV PRIMARY KEY (Nome_Vino,Specie)
 );
 
