@@ -81,6 +81,14 @@ CREATE TABLE Raccolto_Vigneto(
     CONSTRAINT CP_Raccolto_Vigneto PRIMARY KEY (Data_Racc) 
 );
 
+CREATE TABLE Pignatura(
+    Mosto_Prodotto NUMBER,
+    Uva_Utilizzata  varchar(255),
+    Data_Raccolto_Usato DATE,
+    Quantita_Uva_Usata  NUMBER,
+    Costo_Pignatura NUMBER,
+)
+
 CREATE TABLE Mosto(  
     Data_Racc DATE NOT NULL,  
     Num_Lotto_Mosto Number(4,0) NOT NULL, 
