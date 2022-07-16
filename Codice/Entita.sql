@@ -81,12 +81,15 @@ CREATE TABLE Raccolto_Vigneto(
     CONSTRAINT CP_Raccolto_Vigneto PRIMARY KEY (Data_Racc) 
 );
 
-CREATE TABLE Pignatura(
-    Mosto_Prodotto NUMBER,
-    Uva_Utilizzata  varchar(255),
+CREATE TABLE Pigiatura(
+    Num_Lotto_Mosto NUMBER,
+    Specie  varchar(255),
     Data_Raccolto_Usato DATE,
     Quantita_Uva_Usata  NUMBER,
     Costo_Pignatura NUMBER,
+
+    CONSTRAINT CE_Pigiatura_Mosto FOREIGN KEY (Num_Lotto_Mosto)  REFERENCES Mosto (Num_Lotto_Mosto) ON DELETE CASCADE;
+    CONSTRAINT CE_Pigiatura_Tipo_Uva FOREIGN KEY (Specie)  REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE;
 )
 
 CREATE TABLE Mosto(  
