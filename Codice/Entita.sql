@@ -23,11 +23,12 @@ CREATE TABLE Intervento(
 );
 
 CREATE TABLE Trattamento( 
-    Codice_FATTURA_T Number(5,0) NOT NULL,
+    Num_Fattura_Trattamento Number(6,0) NOT NULL,
     Nome_Trattamento varchar(255) NOT NULL, 
     Princ_Att_Prod varchar(255) NOT NULL,
+    Costo_Trattamento NUMBER NOT NULL,
     
-    CONSTRAINT CP_Trattamento PRIMARY KEY (Nome_Trattamento)
+    CONSTRAINT CP_Trattamento PRIMARY KEY (Num_Fattura_Trattamento)
 );
 
 CREATE TABLE Tipo_Vino( 
@@ -200,10 +201,10 @@ CREATE TABLE Vendemmia(
 CREATE TABLE Interventi_Subiti(
     NomeV varchar(255) NOT NULL,
     ComuneV varchar(255) NOT NULL,
-    Codice_FATTURA Number(3,0) not NULL
+    Num_Fattura_Intervento Number(3,0) not NULL
     
     CONSTRAINT CE_Vigneto_Interventi_Subiti FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,
-    CONSTRAINT CE_Intervento_Interventi_Subiti FOREIGN KEY (Tipo_Intervento, Data_Intervento) REFERENCES Intervento (Tipo_Intervento) ON DELETE CASCADE
+    CONSTRAINT CE_Intervento_Interventi_Subiti FOREIGN KEY (Num_Fattura_Intervento) REFERENCES Intervento (Num_Fattura_Intervento) ON DELETE CASCADE
     
 );
 
@@ -232,10 +233,10 @@ CREATE TABLE Composizione_Lotto(
 CREATE TABLE Trattamento_Subito(  
     NomeV varchar(255) NOT NULL,  
     ComuneV varchar(255) NOT NULL,  
-    Codice_FATTURAT Number(3,0) not NULL,
+    Num_Fattura_Trattamento Number(6,0) not NULL,
       
     CONSTRAINT CE_Vigneto_Trattamento_Subito FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,  
-    CONSTRAINT CE_Trattamento_Trattamento_Subito FOREIGN KEY (Nome_Trattamento) REFERENCES Trattamento (Nome_Trattamento) ON DELETE CASCADE
+    CONSTRAINT CE_Trattamento_Trattamento_Subito FOREIGN KEY (Num_Fattura_Trattamento) REFERENCES Trattamento (Num_Fattura_Trattamento) ON DELETE CASCADE
       
 );
 
