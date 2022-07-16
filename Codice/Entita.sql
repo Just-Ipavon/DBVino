@@ -139,8 +139,19 @@ CREATE TABLE Botte(
     Tipo_Legno varchar(255) NOT NULL,
     Nome_Cantina varchar(255) NOT NULL,  
 
-    CONSTRAINT CE_Botte_Vino_Botte FOREIGN KEY (Nome_Cantina) REFERENCES Cantina(Nome_Cantina) ON DELETE CASCADE,
+    CONSTRAINT CE_Botte_Cantina FOREIGN KEY (Nome_Cantina) REFERENCES Cantina(Nome_Cantina) ON DELETE CASCADE,
     CONSTRAINT CP_Botte PRIMARY KEY (Num_Botte) 
+);
+
+CREATE TABLE Invecchiamento(  
+    Num_Botte Number(3,0) NOT NULL,
+    Num_Lotto Number(3,0) NOT NULL, 
+    Data_Inizio_Inv date NOT NULL,
+    Data_Fine_Inv date NOT NULL,
+
+    CONSTRAINT CE_Botte_Invecchiamento FOREIGN KEY (Num_Botte) REFERENCES Botte(Num_Botte) ON DELETE CASCADE,
+    CONSTRAINT CE_Botte_Lotto_Vino FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino(Num_Lotto) ON DELETE CASCADE,
+    CONSTRAINT CP_Botte PRIMARY KEY (Num_Botte,Num_Lotto) 
 );
 
 CREATE TABLE Imbottigliatore(
