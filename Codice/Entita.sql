@@ -54,6 +54,25 @@ CREATE TABLE Cliente(
     CONSTRAINT CP_Cliente PRIMARY KEY (Ragione_Sociale)
 );
 
+CREATE TABLE Cantina(
+    Nome_Cantina varchar(255) NOT NULL, 
+    Via_Cantina varchar(255) NOT NULL,  
+    CAP_Cantina Number(5,0) NOT NULL, 
+    Citta_Cantina varchar(255) NOT NULL, 
+    
+     CONSTRAINT CP_Cantina PRIMARY KEY (Nome_Cantina)
+
+);
+
+CREATE TABLE Imbottigliatore(
+    Nome_Imbott varchar(255) NOT NULL,
+    Via_Imbott varchar(255) NOT NULL, 
+    CAP_Imbott Number(5,0) NOT NULL, 
+    Citta_Imbott varchar(255) NOT NULL, 
+
+    CONSTRAINT CP_Imbottigliatore PRIMARY KEY (Nome_Imbott)
+);
+
 CREATE TABLE Ente_Certif( 
     Nome_Ente varchar(255) NOT NULL,
     Email varchar(255) NOT NULL,
@@ -156,15 +175,6 @@ CREATE TABLE Invecchiamento(
     CONSTRAINT CP_Botte PRIMARY KEY (Num_Botte,Num_Lotto) 
 );
 
-CREATE TABLE Imbottigliatore(
-    Nome_Imbott varchar(255) NOT NULL,
-    Via_Imbott varchar(255) NOT NULL, 
-    CAP_Imbott Number(5,0) NOT NULL, 
-    Citta_Imbott varchar(255) NOT NULL, 
-
-    CONSTRAINT CP_Imbottigliatore PRIMARY KEY (Nome_Imbott)
-);
-
 CREATE TABLE Confezione( 
     Num_Conf Number(4,0) NOT NULL,
     Nome_Vino varchar(255) NOT NULL,
@@ -234,12 +244,3 @@ CREATE TABLE Trattamento_Subito(
       
 );
 
-CREATE TABLE Cantina(
-    Nome_Cantina varchar(255) NOT NULL, 
-    Via_Cantina varchar(255) NOT NULL,  
-    CAP_Cantina Number(5,0) NOT NULL, 
-    Citta_Cantina varchar(255) NOT NULL, 
-    
-     CONSTRAINT CP_Cantina PRIMARY KEY (Nome_Cantina)
-
-);
