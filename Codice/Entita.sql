@@ -105,6 +105,18 @@ CREATE TABLE Raccolto_Vigneto(
     CONSTRAINT CP_Raccolto_Vigneto PRIMARY KEY (Data_Racc, Specie) 
 );
 
+CREATE TABLE Mosto(  
+    Num_Lotto_Mosto Number(4,0) NOT NULL, 
+    Quantita_Mosto Number(5,2) NOT NULL,
+    Nome_Sede varchar(255) NOT NULL, 
+    Costo_Trasporto Number(4,0) NOT NULL,
+    Data_Inizio_Ferm DATE NOT NULL,
+    Data_Fine_Ferm DATE NOT NULL,
+
+    CONSTRAINT CE_Sede_Vinif_Mosto FOREIGN KEY (Nome_Sede) REFERENCES Sede_Vinif (Nome_Sede) ON DELETE CASCADE,  
+    CONSTRAINT CP_Mosto PRIMARY KEY (Num_Lotto_Mosto, Quantita_Mosto)  
+);
+
 CREATE TABLE Pigiatura(
     Num_Lotto_Mosto Number(4,0) NOT NULL,
     Specie varchar(255) NOT NULL,
@@ -117,17 +129,6 @@ CREATE TABLE Pigiatura(
     CONSTRAINT CE_Tipo_Uva_Pigiatura FOREIGN KEY (Specie)  REFERENCES Tipo_Uva(Specie) ON DELETE CASCADE
 );
 
-CREATE TABLE Mosto(  
-    Num_Lotto_Mosto Number(4,0) NOT NULL, 
-    Quantita_Mosto Number(5,2) NOT NULL,
-    Nome_Sede varchar(255) NOT NULL, 
-    Costo_Trasporto Number(4,0) NOT NULL,
-    Data_Inizio_Ferm DATE NOT NULL,
-    Data_Fine_Ferm DATE NOT NULL,
-
-    CONSTRAINT CE_Sede_Vinif_Mosto FOREIGN KEY (Nome_Sede) REFERENCES Sede_Vinif (Nome_Sede) ON DELETE CASCADE,  
-    CONSTRAINT CP_Mosto PRIMARY KEY (Num_Lotto_Mosto, Quantita_Mosto)  
-);
 
 CREATE TABLE Carrello(
     Ragione_Sociale varchar(255) NOT NULL, 
@@ -171,7 +172,7 @@ CREATE TABLE Invecchiamento(
     Data_Fine_Inv date NOT NULL,
 
     CONSTRAINT CE_Botte_Invecchiamento FOREIGN KEY (Num_Botte) REFERENCES Botte(Num_Botte) ON DELETE CASCADE,
-    CONSTRAINT CE_Botte_Invecchiamento FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino(Num_Lotto) ON DELETE CASCADE,
+    CONSTRAINT CE_Lotto_Invecchiamento FOREIGN KEY (Num_Lotto) REFERENCES Lotto_Vino(Num_Lotto) ON DELETE CASCADE,
     CONSTRAINT CP_Botte PRIMARY KEY (Num_Botte,Num_Lotto) 
 );
 
