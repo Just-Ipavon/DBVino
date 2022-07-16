@@ -15,10 +15,11 @@ CREATE TABLE Tipo_Uva(
 );
 
 CREATE TABLE Intervento( 
-    Codice_FATTURA Number(6,0) NOT NULL,
+    Num_Fattura_Intervento Number(6,0) NOT NULL,
     Tipo_Intervento varchar(255) NOT NULL, 
+    Costo_Intervento NUMBER NOT NULL,
     
-    CONSTRAINT CP_Intervento PRIMARY KEY (Tipo_Intervento)
+    CONSTRAINT CP_Intervento PRIMARY KEY (Num_Fattura_Intervento)
 );
 
 CREATE TABLE Trattamento( 
