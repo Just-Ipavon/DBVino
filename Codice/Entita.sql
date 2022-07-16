@@ -55,6 +55,7 @@ CREATE TABLE Cliente(
 
 CREATE TABLE Ente_Certif( 
     Nome_Ente varchar(255) NOT NULL,
+    Email varchar(255) NOT NULL,
     Via_Ente varchar(255) NOT NULL,
 	CAP_Ente Number(5,0) NOT NULL,
 	Citta_Ente varchar(255) NOT NULL,
