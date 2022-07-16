@@ -1,12 +1,11 @@
-CREATE OR REPLACE TABLE Vigneto( 
+CREATE TABLE Vigneto( 
     NomeV varchar(255) NOT NULL, 
     ComuneV varchar(255) NOT NULL, 
-    Estensione Number(5,2) NOT NULL,
+    Estensione number NOT NULL,
     
     CONSTRAINT CP_Vigneto PRIMARY KEY (NomeV, ComuneV)
 );
-
-CREATE OR REPLACE TABLE Tipo_Uva(
+CREATE TABLE Tipo_Uva(
     Specie varchar(255) NOT NULL,
     Glucosio Number(5,2) NOT NULL,
     Colore varchar(255) NOT NULL,
@@ -14,14 +13,14 @@ CREATE OR REPLACE TABLE Tipo_Uva(
     CONSTRAINT CP_Tipo_Uva PRIMARY KEY (Specie)
 );
 
-CREATE OR REPLACE TABLE Intervento( 
+CREATE TABLE Intervento( 
     Codice_FATTURA Number(6,0) NOT NULL,
     Tipo_Intervento varchar(255) NOT NULL, 
     
     CONSTRAINT CP_Intervento PRIMARY KEY (Tipo_Intervento)
 );
 
-CREATE OR REPLACE TABLE Trattamento( 
+CREATE TABLE Trattamento( 
     Codice_FATTURA_T Number(5,0) NOT NULL,
     Nome_Trattamento varchar(255) NOT NULL, 
     Princ_Att_Prod varchar(255) NOT NULL,
@@ -29,7 +28,7 @@ CREATE OR REPLACE TABLE Trattamento(
     CONSTRAINT CP_Trattamento PRIMARY KEY (Nome_Trattamento)
 );
 
-CREATE OR REPLACE TABLE Tipo_Vino( 
+CREATE TABLE Tipo_Vino( 
     Nome_Vino varchar(255) NOT NULL, 
     Acidita Number(4,2) NOT NULL,  
     Colore varchar(255) NOT NULL, 
@@ -41,7 +40,7 @@ CREATE OR REPLACE TABLE Tipo_Vino(
     CONSTRAINT CP_Tipo_Vino PRIMARY KEY (Nome_Vino)
 );
 
-CREATE OR REPLACE TABLE Cliente( 
+CREATE TABLE Cliente( 
 	Ragione_Sociale varchar(255) NOT NULL,  
     Nome_Cliente varchar(255) NOT NULL, 
 	Via_Cl varchar(255) NOT NULL,
@@ -51,7 +50,7 @@ CREATE OR REPLACE TABLE Cliente(
     CONSTRAINT CP_Cliente PRIMARY KEY (Ragione_Sociale)
 	);
 
-CREATE OR REPLACE TABLE Ente_Certif( 
+CREATE TABLE Ente_Certif( 
     Nome_Ente varchar(255) NOT NULL,
     Via_Ente varchar(255) NOT NULL,
 	CAP_Ente Number(5,0) NOT NULL,
@@ -60,7 +59,7 @@ CREATE OR REPLACE TABLE Ente_Certif(
     CONSTRAINT CP_Ente_Certif PRIMARY KEY (Nome_Ente)
 );
 
-CREATE OR REPLACE TABLE Sede_Vinif(
+CREATE TABLE Sede_Vinif(
     Via_Sv varchar(255) NOT NULL, 
     CAP_Sv Number(5,0) NOT NULL, 
     Citta_Sv varchar(255) NOT NULL,  
@@ -72,7 +71,7 @@ CREATE OR REPLACE TABLE Sede_Vinif(
     CONSTRAINT CP_Sede_Vinif PRIMARY KEY (Nome_Sede)
 );
 
-CREATE OR REPLACE TABLE Raccolto_Vigneto(  
+CREATE TABLE Raccolto_Vigneto(  
     Data_Racc DATE NOT NULL,  
     NomeV varchar(255) NOT NULL,
     Quantita Number(5,2) not NULL
@@ -82,7 +81,7 @@ CREATE OR REPLACE TABLE Raccolto_Vigneto(
     CONSTRAINT CP_Raccolto_Vigneto PRIMARY KEY (Data_Racc) 
 );
 
-CREATE OR REPLACE TABLE Mosto(  
+CREATE TABLE Mosto(  
     Data_Racc DATE NOT NULL,  
     Num_Lotto_Mosto Number(4,0) NOT NULL, 
     Tipo_Mosto varchar(255) NOT NULL,  
@@ -98,7 +97,7 @@ CONSTRAINT CE_Sede_Vinif_Mosto FOREIGN KEY (Nome_Sede) REFERENCES Sede_Vinif (No
 CONSTRAINT CP_Mosto PRIMARY KEY (Num_Lotto_Mosto)  
 );
 
-CREATE OR REPLACE TABLE Carrello(
+CREATE TABLE Carrello(
     Ragione_Sociale varchar(255) NOT NULL, 
     Codice_Acquisto Number(4,0) NOT NULL, 
     Metodo_Pagamento varchar(255) NOT NULL,
@@ -108,7 +107,7 @@ CREATE OR REPLACE TABLE Carrello(
     CONSTRAINT CP_Carrello PRIMARY KEY (Codice_Acquisto)
 );
 
-CREATE OR REPLACE TABLE Lotto_Vino(
+CREATE TABLE Lotto_Vino(
     Num_Lotto Number(4,0) NOT NULL, 
     Nome_Vino varchar(255) NOT NULL,
     Data_Lotto DATE NOT NULL,
@@ -120,7 +119,7 @@ CREATE OR REPLACE TABLE Lotto_Vino(
     CONSTRAINT CP_Lotto_Vino PRIMARY KEY (Num_Lotto)
 );
 
-CREATE OR REPLACE TABLE Botte(  
+CREATE TABLE Botte(  
     Num_Botte Number(3,0) NOT NULL,
     Num_Lotto Number(4,0) NOT NULL,  
     Tipo_Legno varchar(255) NOT NULL,  
@@ -129,7 +128,7 @@ CREATE OR REPLACE TABLE Botte(
     CONSTRAINT CP_Botte PRIMARY KEY (Num_Botte) 
 );
 
-CREATE OR REPLACE TABLE Imbottigliatore(
+CREATE TABLE Imbottigliatore(
     Nome_Imbott varchar(255) NOT NULL,
     Via_Imbott varchar(255) NOT NULL, 
     CAP_Imbott Number(5,0) NOT NULL, 
@@ -139,7 +138,7 @@ CREATE OR REPLACE TABLE Imbottigliatore(
     CONSTRAINT CP_Imbottigliatore PRIMARY KEY (Nome_Imbott)
 );
 
-CREATE OR REPLACE TABLE Confezione( 
+CREATE TABLE Confezione( 
     Num_Conf Number(4,0) NOT NULL,
     Codice_Acquisto Number(3,0) NULL,
     Data_Acquisto date not NULL,
@@ -150,7 +149,7 @@ CREATE OR REPLACE TABLE Confezione(
     CONSTRAINT CP_Confezione PRIMARY KEY (Num_Conf) 
 );
 
-CREATE OR REPLACE TABLE Controllo_Certificazione(
+CREATE TABLE Controllo_Certificazione(
     Nome_Vino varchar(255) NOT NULL, 
     Nome_Ente varchar(255) NOT NULL, 
     Num_Pratica Number(3,0) NOT NULL,
@@ -163,7 +162,7 @@ CREATE OR REPLACE TABLE Controllo_Certificazione(
     CONSTRAINT CP_CC PRIMARY KEY (Num_Pratica) 
 );
 
-CREATE OR REPLACE TABLE Composizione_Vino(
+CREATE TABLE Composizione_Vino(
 	Nome_Vino varchar(255) NOT NULL,
     Specie varchar(255) NOT NULL,
     Percentuale Number(3,1) NOT NULL,
@@ -173,7 +172,7 @@ CREATE OR REPLACE TABLE Composizione_Vino(
     
 );
 
-CREATE OR REPLACE TABLE Vendemmia( 
+CREATE TABLE Vendemmia( 
     Specie varchar(255) NOT NULL, 
     NomeV varchar(255) not NULL, 
     ComuneV varchar(255) not NULL,
@@ -185,7 +184,7 @@ CREATE OR REPLACE TABLE Vendemmia(
      
 );
 
-CREATE OR REPLACE TABLE Interventi_Subiti(
+CREATE TABLE Interventi_Subiti(
     NomeV varchar(255) NOT NULL,
     ComuneV varchar(255) NOT NULL,
     Codice_FATTURA Number(3,0) not NULL
@@ -195,7 +194,7 @@ CREATE OR REPLACE TABLE Interventi_Subiti(
     
 );
 
-CREATE OR REPLACE TABLE Coltivazione(
+CREATE TABLE Coltivazione(
     NomeV varchar(255) NOT NULL,
     ComuneV varchar(255) NOT NULL,
     Specie varchar(255) NOT NULL,
@@ -206,7 +205,7 @@ CREATE OR REPLACE TABLE Coltivazione(
     
 );
 
-CREATE OR REPLACE TABLE Composizione_Lotto(
+CREATE TABLE Composizione_Lotto(
     Nome_Vino varchar(255) NOT NULL,
     Num_Lotto Number(3,0) NOT NULL,
     Azienda_Imbott varchar(255) NOT NULL,
@@ -217,7 +216,7 @@ CREATE OR REPLACE TABLE Composizione_Lotto(
     
 );
 
-CREATE OR REPLACE TABLE Trattamento_Subito(  
+CREATE TABLE Trattamento_Subito(  
     NomeV varchar(255) NOT NULL,  
     ComuneV varchar(255) NOT NULL,  
     Codice_FATTURAT Number(3,0) not NULL,
@@ -227,7 +226,7 @@ CREATE OR REPLACE TABLE Trattamento_Subito(
       
 );
 
-CREATE OR REPLACE TABLE Cantina(
+CREATE TABLE Cantina(
     Nome_Cantina varchar(255) NOT NULL, 
     Via_Cantina varchar(255) NOT NULL,  
     CAP_Cantina Number(5,0) NOT NULL, 
@@ -240,7 +239,7 @@ CREATE OR REPLACE TABLE Cantina(
 
 );
 
-CREATE OR REPLACE TABLE Confezionamento(
+CREATE TABLE Confezionamento(
     Num_Conf Number(3,0) NOT NULL,
     Num_Lotto Number(3,0) NOT NULL,
     Data_Confezionamento DATE NOT NULL,
@@ -252,7 +251,7 @@ CREATE OR REPLACE TABLE Confezionamento(
 
 );
 
-CREATE OR REPLACE TABLE Vendita(
+CREATE TABLE Vendita(
     Num_Lotto Number(3,0) NOT NULL,
     Ragione_Sociale varchar(255) NOT NULL,
     Codice_Acquisto Number(4,0) NOT NULL,
