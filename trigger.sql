@@ -1,4 +1,4 @@
-
+# ----------------------------------1------------------------- #
 CREATE OR REPLACE TRIGGER Numero_Bottiglie_Conf_Div_Tre
 BEFORE INSERT on Confezionamento
 FOR EACH ROW
@@ -6,14 +6,14 @@ DECLARE
 CONTATORE NUMBER;
 ERRORE EXCEPTION;
 BEGIN
-IF :New.Num_Bottiglie_Confezionate MOD 3 <> 0 THEN 
+IF (:New.Num_Bottiglie_Confezionate MOD 3 <> 0) THEN 
 RAISE ERRORE;
 END IF;
 EXCEPTION
 WHEN ERRORE THEN
 RAISE_APPLICATION_ERROR(-20000,'Numero Bottiglieper confezione dev essere divisibile per 3!');
 END;
-
+# -----------------------------------------2-------------------------------- #
 CREATE OR REPLACE TRIGGER Certificato_presente
 BEFORE INSERT on Controllo_Certificazione
 FOR EACH ROW
@@ -21,7 +21,9 @@ DECLARE
 CONTATORE NUMBER;
 ERRORE EXCEPTION;
 BEGIN
-SELECT (COUNT(*)) INTO CONTATORE FROM Controllo_Certificazione WHERE (Certificato_Richiesto = :NEW.Certificato_Richiesto AND Nome_Vino = :NEW.Nome_Vino);
+SELECT (COUNT(*)) INTO CONTATORE 
+FROM Controllo_Certificazione 
+WHERE (Certificato_Richiesto = :NEW.Certificato_Richiesto AND Nome_Vino = :NEW.Nome_Vino);
 IF CONTATORE > 1 THEN 
 RAISE ERRORE;
 END IF;
@@ -29,8 +31,7 @@ EXCEPTION
 WHEN ERRORE THEN
 RAISE_APPLICATION_ERROR(-20000,'Gia Inserito');
 END;
-
-
+# ----------------------------------------3--------------------------------- #
 CREATE OR REPLACE TRIGGER Supera_100_PC 
 before INSERT or update ON Composizione_Vino 
 FOR EACH ROW 
@@ -42,10 +43,10 @@ BEGIN
     SELECT( 
         SUM(Percentuale) 
     ) 
-    INTO (Somma_Percentuali) FROM (Composizione_Vino) where (Nome_Vino = :NEW.Nome_Vino ); 
-    IF( Somma_Percentuali + :NEW.Percentuale > 100) THEN 
+    INTO (Somma_Percentuali) FROM (Composizione_Vino) where (Nome_Vino = :NEW.Nome_Vino); 
+    IF(Somma_Percentuali + :NEW.Percentuale > 100) THEN 
         DBMS_OUTPUT.PUT_LINE('Supera 100%, Correzione in corso'); 
-         Out_Percentuale := 100 - Somma_Percentuali; 
+            Out_Percentuale := 100 - Somma_Percentuali; 
         IF Out_Percentuale > 0 THEN 
         :NEW.Percentuale := Out_Percentuale; 
         ELSE 
@@ -54,8 +55,7 @@ BEGIN
     END IF;
     COMMIT; 
 END;
-
-
+# ----------------------------------------4----------------------------- #
 CREATE OR REPLACE TRIGGER Limite_Certificazioni
 BEFORE INSERT on Controllo_Certificazione
 FOR EACH ROW
@@ -63,15 +63,17 @@ DECLARE
 CONTATORE NUMBER;
 ERRORE EXCEPTION;
 BEGIN
-SELECT (COUNT(*)) INTO CONTATORE FROM Controllo_Certificazione WHERE (Nome_Vino = :NEW.Nome_Vino);
+SELECT (COUNT(*)) INTO CONTATORE
+FROM Controllo_Certificazione
+WHERE (Nome_Vino = :NEW.Nome_Vino);
 IF CONTATORE >= 3 THEN 
 RAISE ERRORE;
 END IF;
 EXCEPTION
 WHEN others THEN
-RAISE_APPLICATION_ERROR(-2000,' TROPPI CERTIFICATI');
+RAISE_APPLICATION_ERROR(-2000,'TROPPI CERTIFICATI');
 END;
-
+# ----------------------------------------5----------------------------- #
 CREATE OR REPLACE TRIGGER Limite_Trattamento
 BEFORE INSERT on Trattamento_Subito
 FOR EACH ROW
@@ -85,9 +87,9 @@ IF (CONTATORE - :NEW.Data_Trattamento )/30 <= 2  THEN
 END IF;
 EXCEPTION
 WHEN others THEN
-    RAISE_APPLICATION_ERROR(-2000,' VIGNETO GIA TRATTATO DA MENO DI DUE MESI');
+    RAISE_APPLICATION_ERROR(-2000,'VIGNETO GIA TRATTATO DA MENO DI DUE MESI');
 END;
-
+# -----------------------------------------6----------------------------- #
 CREATE OR REPLACE TRIGGER Limite_Intervento
 BEFORE INSERT on Interventi_Subiti
 FOR EACH ROW
@@ -103,7 +105,7 @@ EXCEPTION
 WHEN others THEN
     RAISE_APPLICATION_ERROR(-2000,' Gia Fatto Intervento DA MENO DI Tre Settimane');
 END;
-
+# ------------------------------------------7----------------------------- #
 create or replace trigger Sconto_Cliente 
 before insert on Cliente 
 for each row 
