@@ -9,6 +9,7 @@ CREATE TABLE Tipo_Uva(
     Specie varchar(255) NOT NULL,
     Glucosio Number(5,2) NOT NULL,
     Colore varchar(255) NOT NULL,
+    Costo_Impianto NUMBER,
 	
     CONSTRAINT CP_Tipo_Uva PRIMARY KEY (Specie)
 );
