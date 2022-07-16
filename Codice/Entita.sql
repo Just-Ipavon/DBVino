@@ -68,9 +68,6 @@ CREATE TABLE Sede_Vinif(
     CAP_Sv Number(5,0) NOT NULL, 
     Citta_Sv varchar(255) NOT NULL,  
     Nome_Sede varchar(255) NOT NULL,
-    Data_Inizio_Ferm DATE NOT NULL,
-    Data_Fine_Ferm DATE NOT NULL,
-    Temperatura_Fermentazione Number(4,2) NOT NULL,
 
     CONSTRAINT CP_Sede_Vinif PRIMARY KEY (Nome_Sede)
 );
@@ -97,19 +94,15 @@ CREATE TABLE Pigiatura(
 )
 
 CREATE TABLE Mosto(  
-    Data_Racc DATE NOT NULL,  
     Num_Lotto_Mosto Number(4,0) NOT NULL, 
-    Tipo_Mosto varchar(255) NOT NULL,  
+    Quantita_Mosto Number(3,0) NOT NULL,
     Nome_Sede varchar(255) NOT NULL, 
-    Via_Sv varchar(255) NOT NULL, 
-    CAP_Sv Number(5,0) NOT NULL, 
-    Comune_Sv varchar(255) NOT NULL, 
-    Civico_Sv Number(5,0) NOT NULL, 
-    Citta_Sv varchar(255) NOT NULL,
+    Costo_Trasporto Number(4,0) NOT NULL,
+    Data_Inizio_Ferm DATE NOT NULL,
+    Data_Fine_Ferm DATE NOT NULL,
  
-CONSTRAINT CE_Raccolto_Vigneto_Mosto FOREIGN KEY (Data_Racc) REFERENCES Raccolto_Vigneto (Data_Racc) ON DELETE CASCADE,  
 CONSTRAINT CE_Sede_Vinif_Mosto FOREIGN KEY (Nome_Sede) REFERENCES Sede_Vinif (Nome_Sede) ON DELETE CASCADE,  
-CONSTRAINT CP_Mosto PRIMARY KEY (Num_Lotto_Mosto)  
+CONSTRAINT CP_Mosto PRIMARY KEY (Num_Lotto_Mosto, Quantita_Mosto)  
 );
 
 CREATE TABLE Carrello(
