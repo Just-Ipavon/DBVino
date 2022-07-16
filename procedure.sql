@@ -1,5 +1,3 @@
-
-
 CREATE OR REPLACE PROCEDURE Vino_Tavola (In_Nome_Vino varchar2)  
 IS 
 CONTATORE NUMBER;  
@@ -11,7 +9,6 @@ ELSE
 dbms_output.put_line('Questo Vino non è un vino da tavola'); 
 END IF; 
 END;
-
 ------------------------
 CREATE OR REPLACE PROCEDURE Trova_Sedi_Imbott (In_Lotto_Vino int)   
 IS  
@@ -22,47 +19,11 @@ select (Nome_Imbott) into Nome_Imb from Imbottigliatore where(Num_Lotto = In_Lot
 dbms_output.put_line(Nome_Imb);
 END;
 ---------------------
---Visualizzare, dato in input un anno, tutti i trattamenti e interventi subiti su tutti i vigneti
-
-create or replace procedure Trova_Int_Tratt (In_Anno DATE)
-is
-
-type Nome_Tratt is varray(10) of varchar(255);
-type Nome_Int is varray(10) of varchar(255);
-
-type Nome_Vign_T is varray(10) of varchar(255);
-type Nome_Vign_I is varray(10) of varchar(255);
-
-Nome_V_T_temp varchar(255);
-Nome_V_I_temp varchar(255);
-
-Nome_T_temp varchar(255);
-Nome_I_temp varchar(255);
-begin
-for i in 1..10 loop
-select (Nome_Trattamento)into Nome_T_temp from Trattamento_Subito where(Data_Trattamento = In_Anno);
-Nome_Tratt(i) := Nome_T_temp;
-select (Tipo_Intervento) into Nome_I_temp from Interventi_Subiti where(Data_Intervento = In_Anno);
-Nome_Int(i) := Nome_I_temp;
-
-
-select (NomeV) into Nome_V_T_temp from Trattamento_Subito where(Trattamento_Subito.Nome_Trattamento = Nome_Tratt(i));
-Nome_Vign_T(i) := Nome_V_T_temp;
-select (NomeV) into Nome_V_I_temp from Interventi_Subiti where(Interventi_Subiti.Tipo_Intervento = Nome_Int(i));
-Nome_Vign_I(i) := Nome_V_I_temp;
-
-end loop;
-dbms_output.put_line('Visualizzo Trattamenti...');
-for i in 1..10 loop
-dbms_output.put_line(i || '.' || Nome_Vign_T);
-end loop;
---Print degli interventi 
-dbms_output.put_line('Visualizzo Interventi...');
-for i in 1..10 loop
-dbms_output.put_line(i || '.' || Nome_Vign_I);
-end loop;
-commit;
-end;
+#DAFARE: Visualizzare dato in input un anno, tutti i trattamenti/interventi subiti dai vigneti in quell anno
+---------------------
+#DAFARE: Se un vino non viene venduto per piu di X tempo, effettuare uno sconto del 10%
+---------------------
+#DAFARE: Effettuare un aumento del prezzo del vino piu venduto del 15%
 -------------------------------
 create or replace procedure Trova_Int_Tratt (In_Anno int) 
 is 
