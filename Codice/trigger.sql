@@ -29,7 +29,7 @@ RAISE ERRORE;
 END IF;
 EXCEPTION
 WHEN ERRORE THEN
-RAISE_APPLICATION_ERROR(-20000,'Gia Inserito');
+RAISE_APPLICATION_ERROR(-20001,'Gia Inserito');
 END;
 # ----------------------------------------3--------------------------------- #
 CREATE OR REPLACE TRIGGER Supera_100_PC 
@@ -50,7 +50,7 @@ BEGIN
         IF Out_Percentuale > 0 THEN 
         :NEW.Percentuale := Out_Percentuale; 
         ELSE 
-        RAISE_APPLICATION_ERROR(-2000,'Percentuale gia piena'); 
+        RAISE_APPLICATION_ERROR(-20002,'Percentuale gia piena'); 
         END IF; 
     END IF;
     COMMIT; 
@@ -71,7 +71,7 @@ RAISE ERRORE;
 END IF;
 EXCEPTION
 WHEN others THEN
-RAISE_APPLICATION_ERROR(-2000,'TROPPI CERTIFICATI');
+RAISE_APPLICATION_ERROR(-20003,'TROPPI CERTIFICATI');
 END;
 # ----------------------------------------5----------------------------- #
 CREATE OR REPLACE TRIGGER Limite_Trattamento
@@ -87,7 +87,7 @@ IF (CONTATORE - :NEW.Data_Trattamento )/30 <= 2  THEN
 END IF;
 EXCEPTION
 WHEN others THEN
-    RAISE_APPLICATION_ERROR(-2000,'VIGNETO GIA TRATTATO DA MENO DI DUE MESI');
+    RAISE_APPLICATION_ERROR(-20004,'VIGNETO GIA TRATTATO DA MENO DI DUE MESI');
 END;
 # -----------------------------------------6----------------------------- #
 CREATE OR REPLACE TRIGGER Limite_Intervento
@@ -103,7 +103,7 @@ IF (CONTATORE - :NEW.Data_Intervento) < 21  THEN
 END IF;
 EXCEPTION
 WHEN others THEN
-    RAISE_APPLICATION_ERROR(-2000,' Gia Fatto Intervento DA MENO DI Tre Settimane');
+    RAISE_APPLICATION_ERROR(-20005,' Gia Fatto Intervento DA MENO DI Tre Settimane');
 END;
 # ------------------------------------------7----------------------------- #
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Mosto
@@ -121,7 +121,7 @@ IF (CONTATORE1 - CONTATORE2) < 0  THEN
 END IF;
 EXCEPTION
 WHEN others THEN
-    RAISE_APPLICATION_ERROR(-2000,' La quantita di mosto prodotto non puo superare la quantita di uva usata');
+    RAISE_APPLICATION_ERROR(-20006,' La quantita di mosto prodotto non puo superare la quantita di uva usata');
 END;
 # -----------------------------------------8----------------------------- #
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Vino
@@ -139,7 +139,7 @@ IF (CONTATORE2 - CONTATORE1) < 0  THEN
 END IF;
 EXCEPTION
 WHEN others THEN
-    RAISE_APPLICATION_ERROR(-2000,' La quantita di uva prodotta non puo superare la quantita di mosto prodotto');
+    RAISE_APPLICATION_ERROR(-20007,' La quantita di uva prodotta non puo superare la quantita di mosto prodotto');
 END;
 # ------------------------------------------9----------------------------- #
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Raccolto
@@ -157,5 +157,5 @@ IF (CONTATORE1 - CONTATORE2) < 0  THEN
 END IF;
 EXCEPTION
 WHEN others THEN
-    RAISE_APPLICATION_ERROR(-2000,' La quantita di uva usata non puo superare la quantita di uva raccolta');
+    RAISE_APPLICATION_ERROR(-20008,' La quantita di uva usata non puo superare la quantita di uva raccolta');
 END;
