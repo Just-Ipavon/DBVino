@@ -8,9 +8,9 @@ CREATE TABLE Vigneto(
 
 CREATE TABLE Tipo_Uva(
     Specie varchar(255) NOT NULL,
-    Glucosio Number(5,2) NOT NULL,
+    Glucosio Number NOT NULL,
     Colore varchar(255) NOT NULL,
-    Costo_Impianto NUMBER,
+    Costo_Impianto NUMBER NOT NULL,
 	
     CONSTRAINT CP_Tipo_Uva PRIMARY KEY (Specie)
 );
