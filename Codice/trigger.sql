@@ -123,3 +123,21 @@ EXCEPTION
 WHEN others THEN
     RAISE_APPLICATION_ERROR(-2000,' La quantita di mosto prodotto non puo superare la quantita di uva raccolta');
 END;
+# -----------------------------------------8----------------------------- #
+CREATE OR REPLACE TRIGGER Controllo_Quantita_Mosto
+BEFORE INSERT on Lotto_Vino
+FOR EACH ROW
+DECLARE 
+CONTATORE1 Number;
+CONTATORE2 Number;
+ERRORE EXCEPTION;
+BEGIN
+SELECT (Quantita_Mosto) INTO CONTATORE1 FROM Mosto WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
+SELECT (Quantita_Uva) INTO CONTATORE2 FROM Lotto_Vino WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
+IF (CONTATORE2 - CONTATORE1) < 0  THEN 
+    RAISE ERRORE;
+END IF;
+EXCEPTION
+WHEN others THEN
+    RAISE_APPLICATION_ERROR(-2000,' La quantita di uva prodotta non puo superare la quantita di mosto prodotto');
+END;
