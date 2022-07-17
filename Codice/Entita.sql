@@ -130,6 +130,7 @@ CREATE TABLE Pigiatura(
 );
 
 
+
 CREATE TABLE Carrello(
     Ragione_Sociale varchar(255) NOT NULL, 
     Codice_Acquisto Number(4,0) NOT NULL, 

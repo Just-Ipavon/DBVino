@@ -107,24 +107,24 @@ WHEN others THEN
 END;
 # ------------------------------------------7----------------------------- #
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Mosto
-BEFORE INSERT on Pigiatura
+BEFORE INSERT on Mosto
 FOR EACH ROW
 DECLARE 
 CONTATORE1 Number;
 CONTATORE2 Number;
 ERRORE EXCEPTION;
 BEGIN
-SELECT (Quantita_Mosto) INTO CONTATORE1 FROM Pigiatura WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
+SELECT (Quantita_Mosto) INTO CONTATORE1 FROM Mosto WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
 SELECT (Quantita_Uva) INTO CONTATORE2 FROM Pigiatura WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
 IF (CONTATORE1 - CONTATORE2) < 0  THEN 
     RAISE ERRORE;
 END IF;
 EXCEPTION
 WHEN others THEN
-    RAISE_APPLICATION_ERROR(-2000,' La quantita di mosto prodotto non puo superare la quantita di uva raccolta');
+    RAISE_APPLICATION_ERROR(-2000,' La quantita di mosto prodotto non puo superare la quantita di uva usata');
 END;
 # -----------------------------------------8----------------------------- #
-CREATE OR REPLACE TRIGGER Controllo_Quantita_Mosto
+CREATE OR REPLACE TRIGGER Controllo_Quantita_Vino
 BEFORE INSERT on Lotto_Vino
 FOR EACH ROW
 DECLARE 
@@ -140,4 +140,22 @@ END IF;
 EXCEPTION
 WHEN others THEN
     RAISE_APPLICATION_ERROR(-2000,' La quantita di uva prodotta non puo superare la quantita di mosto prodotto');
+END;
+# ------------------------------------------9----------------------------- #
+CREATE OR REPLACE TRIGGER Controllo_Quantita_Raccolto
+BEFORE INSERT on Pigiatura
+FOR EACH ROW
+DECLARE 
+CONTATORE1 Number;
+CONTATORE2 Number;
+ERRORE EXCEPTION;
+BEGIN
+SELECT (Quantita_Raccolto) INTO CONTATORE1 FROM Raccolto_Vigneto WHERE (Specie = :NEW.Specie);
+SELECT (Quantita_Uva) INTO CONTATORE2 FROM Pigiatura WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
+IF (CONTATORE1 - CONTATORE2) < 0  THEN 
+    RAISE ERRORE;
+END IF;
+EXCEPTION
+WHEN others THEN
+    RAISE_APPLICATION_ERROR(-2000,' La quantita di uva usata non puo superare la quantita di uva raccolta');
 END;
