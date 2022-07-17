@@ -19,7 +19,13 @@ select (Nome_Imbott) into Nome_Imb from Imbottigliatore where(Num_Lotto = In_Lot
 dbms_output.put_line(Nome_Imb);
 END;
 ---------------------
-#DAFARE: Visualizzare dato in input un anno, tutti i trattamenti/interventi subiti dai vigneti in quell anno
+create or replace procedure Calcola_Costi (In_Anno date)
+is
+costo number;
+begin
+select(sum((count(Costo_Intervento) from Intervento where Data_Intervento = In_Anno),(count(Costo_Impianto)from Tipo_Uva),(count(Costo_Trattamento) from Trattamento),(count(Costo_Raccolta) from Raccolto_Vigneto),(count(Costo_Trasporto)from Mosto),(count(Costo_Pigiatura)from Pigiatura),(count(Costo_Fermentazione) from Lotto_Vino)))into costo;
+dbms_output.put_line('Costi totali = ' || costo);
+end;
 ---------------------
 #DAFARE: Se un vino non viene venduto per piu di X tempo, effettuare uno sconto del 10%
 ---------------------
