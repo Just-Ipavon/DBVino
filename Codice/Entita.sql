@@ -114,18 +114,17 @@ CREATE TABLE Mosto(
     Data_Fine_Ferm DATE NOT NULL,
 
     CONSTRAINT CE_Sede_Vinif_Mosto FOREIGN KEY (Nome_Sede) REFERENCES Sede_Vinif (Nome_Sede) ON DELETE CASCADE,  
-    CONSTRAINT CP_Mosto PRIMARY KEY (Num_Lotto_Mosto, Quantita_Mosto)  
+    CONSTRAINT CP_Mosto PRIMARY KEY (Num_Lotto_Mosto)  
 );
 
 CREATE TABLE Pigiatura(
     Num_Lotto_Mosto Number(4,0) NOT NULL,
     Specie varchar(255) NOT NULL,
     Data_Raccolto_Usato DATE NOT NULL,
-    Quantita_Mosto Number NOT NULL,
     Quantita_Uva Number NOT NULL,
     Costo_Pigiatura Number NOT NULL,
 
-    CONSTRAINT CE_Mosto_Pigiatura FOREIGN KEY (Num_Lotto_Mosto, Quantita_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto,Quantita_Mosto) ON DELETE CASCADE,
+    CONSTRAINT CE_Mosto_Pigiatura FOREIGN KEY (Num_Lotto_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto) ON DELETE CASCADE,
     CONSTRAINT CE_Tipo_Uva_Pigiatura FOREIGN KEY (Specie)  REFERENCES Tipo_Uva(Specie) ON DELETE CASCADE
 );
 
@@ -143,7 +142,6 @@ CREATE TABLE Carrello(
 CREATE TABLE Lotto_Vino(
     Num_Lotto Number(4,0) NOT NULL, 
     Quantita_Vino Number(5,2) NOT NULL,
-    Quantita_Mosto Number(5,2) NOT NULL,
     Num_Lotto_Mosto Number(4,0) NOT NULL,
     Nome_Vino varchar(255) NOT NULL,
     Data_Lotto DATE NOT NULL,
@@ -151,7 +149,7 @@ CREATE TABLE Lotto_Vino(
     Costo_Fermentazione Number NOT NULL,
    
 
-    CONSTRAINT CE_Lotto_Mosto FOREIGN KEY(Num_Lotto_Mosto, Quantita_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto, Quantita_Mosto) ON DELETE CASCADE,
+    CONSTRAINT CE_Lotto_Mosto FOREIGN KEY(Num_Lotto_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto) ON DELETE CASCADE,
     CONSTRAINT CE_Lotto_Tipo_Vino FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino (Nome_Vino) ON DELETE CASCADE,
     CONSTRAINT CE_Lotto_Imbott FOREIGN KEY(Nome_Imbott)  REFERENCES Imbottigliatore(Nome_Imbott) ON DELETE CASCADE,
     CONSTRAINT CP_Lotto_Vino PRIMARY KEY (Num_Lotto)
