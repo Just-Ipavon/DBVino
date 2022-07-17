@@ -110,13 +110,10 @@ CREATE OR REPLACE TRIGGER Controllo_Quantita_Mosto
 BEFORE INSERT on Mosto
 FOR EACH ROW
 DECLARE 
-CONTATORE1 Number;
 CONTATORE2 Number;
-ERRORE EXCEPTION;
 BEGIN
-SELECT (Quantita_Mosto) INTO CONTATORE1 FROM Mosto WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
-SELECT (Quantita_Uva) INTO CONTATORE2 FROM Pigiatura WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
-IF (CONTATORE1 - CONTATORE2) < 0  THEN 
+SELECT (Quantita_Raccolto) INTO CONTATORE2 FROM Raccolto_Vigneto WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
+IF (CONTATORE2 - :NEW.Quantita_Mosto) < 0  THEN 
     RAISE ERRORE;
 END IF;
 EXCEPTION
@@ -129,17 +126,11 @@ BEFORE INSERT on Lotto_Vino
 FOR EACH ROW
 DECLARE 
 CONTATORE1 Number;
-CONTATORE2 Number;
-ERRORE EXCEPTION;
 BEGIN
 SELECT (Quantita_Mosto) INTO CONTATORE1 FROM Mosto WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
-SELECT (Quantita_Vino) INTO CONTATORE2 FROM Lotto_Vino WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
-IF (CONTATORE2 - CONTATORE1) < 0  THEN 
-    RAISE ERRORE;
-END IF;
-EXCEPTION
-WHEN others THEN
+IF (CONTATORE1 - :NEW.Quantita_Vino) < 0  THEN 
     RAISE_APPLICATION_ERROR(-20007,' La quantita di uva prodotta non puo superare la quantita di mosto prodotto');
+END IF;
 END;
 # ------------------------------------------9----------------------------- #
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Raccolto
@@ -147,15 +138,37 @@ BEFORE INSERT on Pigiatura
 FOR EACH ROW
 DECLARE 
 CONTATORE1 Number;
-CONTATORE2 Number;
-ERRORE EXCEPTION;
 BEGIN
 SELECT (Quantita_Raccolto) INTO CONTATORE1 FROM Raccolto_Vigneto WHERE (Specie = :NEW.Specie);
-SELECT (Quantita_Uva) INTO CONTATORE2 FROM Pigiatura WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
-IF (CONTATORE1 - CONTATORE2) < 0  THEN 
-    RAISE ERRORE;
-END IF;
-EXCEPTION
-WHEN others THEN
+IF (CONTATORE1 - :NEW.Quantita_Uva) < 0  THEN 
     RAISE_APPLICATION_ERROR(-20008,' La quantita di uva usata non puo superare la quantita di uva raccolta');
+END IF;
+END; 
+
+# ------------------------------------------10----------------------------- #
+
+CREATE OR REPLACE TRIGGER Supera_100_Mosto 
+before INSERT or update ON Pigiatura 
+FOR EACH ROW 
+DECLARE 
+    pragma autonomous_transaction; 
+    Somma_Uva Number; 
+    Out_Uva Number; 
+    Quantita_TOT Number;
+BEGIN 
+    SELECT (Quantita_Mosto) INTO Quantita_TOT FROM Mosto WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
+    SELECT( 
+        SUM(Quantita_Uva) 
+    ) 
+    INTO (Somma_Uva) FROM (Pigiatura) where (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto); 
+    IF(Somma_Uva + :NEW.Quantita_Uva > Quantita_TOT) THEN 
+        DBMS_OUTPUT.PUT_LINE('Supera il totale, Correzione in corso'); 
+            Out_Uva := Quantita_TOT - Somma_Uva; 
+        IF Out_Uva > 0 THEN 
+        :NEW.Quantita_Uva := Out_Uva; 
+        ELSE 
+        RAISE_APPLICATION_ERROR(-20009,'Percentuale gia piena'); 
+        END IF; 
+    END IF;
+    COMMIT; 
 END;
