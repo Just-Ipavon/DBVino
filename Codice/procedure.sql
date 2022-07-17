@@ -20,11 +20,18 @@ dbms_output.put_line(Nome_Imb);
 END;
 ---------------------
 create or replace procedure Calcola_Costi (In_Anno date)
+
 is
 costo number;
 begin
-select(sum((count(Costo_Intervento) from Intervento where Data_Intervento = In_Anno),(count(Costo_Impianto)from Tipo_Uva),(count(Costo_Trattamento) from Trattamento),(count(Costo_Raccolta) from Raccolto_Vigneto),(count(Costo_Trasporto)from Mosto),(count(Costo_Pigiatura)from Pigiatura),(count(Costo_Fermentazione) from Lotto_Vino)))into costo;
-dbms_output.put_line('Costi totali = ' || costo);
+
+select (costo) from(
+    select(
+        sum(Costo_Impianto,Costo_Intervento,Costo_Trattamento,Costo_Raccolta,Costo_Trasporto,Costo_Pigiatura,Costo_Fermentazione)
+        from (Tipo_Uva join Intervento join Trattamento join Raccolta_Vigneto join Mosto join Pigiatura join Lotto_Vino))
+        into costo
+    )
+dbms_output.put_line(costo);
 end;
 ---------------------
 #DAFARE: Se un vino non viene venduto per piu di X tempo, effettuare uno sconto del 10%
