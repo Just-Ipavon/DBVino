@@ -1,12 +1,12 @@
 # ----------------------------------1------------------------- #
 CREATE OR REPLACE TRIGGER Numero_Bottiglie_Conf_Div_Tre
-BEFORE INSERT on Confezionamento
+BEFORE INSERT on Confezione
 FOR EACH ROW
 DECLARE 
 CONTATORE NUMBER;
 ERRORE EXCEPTION;
 BEGIN
-IF (:New.Num_Bottiglie_Confezionate MOD 3 <> 0) THEN 
+IF :new.Num_Bott_Conf MOD 3 <> 0 THEN 
 RAISE ERRORE;
 END IF;
 EXCEPTION
@@ -106,22 +106,3 @@ WHEN others THEN
     RAISE_APPLICATION_ERROR(-2000,' Gia Fatto Intervento DA MENO DI Tre Settimane');
 END;
 # ------------------------------------------7----------------------------- #
-create or replace trigger Sconto_Cliente 
-before insert on Cliente 
-for each row 
-declare 
-NomeCL varchar(255); 
-Sovrapprezzo int;
-Costo int;
-begin 
-select Nome_Cliente into NomeCL from Cliente where (:OLD.Ragione_Sociale = :NEW.Ragione_Sociale);
-select Prezzo_Vendita into Costo from Vendita;
-Sovrapprezzo := (Costo * 40)/100;
-if :new.Nome_Cliente = 'Camastra' then 
-Costo := Costo + Sovrapprezzo;
-end if;
-ELSE if :new.Nome_Cliente = 'Maratea' then
-Costo := 0
-end if;
-end;
-
