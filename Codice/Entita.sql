@@ -122,7 +122,7 @@ CREATE TABLE Pigiatura(
     Specie varchar(255) NOT NULL,
     Data_Raccolto_Usato DATE NOT NULL,
     Quantita_Mosto Number NOT NULL,
-    Quantita_Uva_Usata Number NOT NULL,
+    Quantita_Uva Number NOT NULL,
     Costo_Pigiatura Number NOT NULL,
 
     CONSTRAINT CE_Mosto_Pigiatura FOREIGN KEY (Num_Lotto_Mosto, Quantita_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto,Quantita_Mosto) ON DELETE CASCADE,
