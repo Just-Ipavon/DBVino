@@ -133,7 +133,7 @@ CONTATORE2 Number;
 ERRORE EXCEPTION;
 BEGIN
 SELECT (Quantita_Mosto) INTO CONTATORE1 FROM Mosto WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
-SELECT (Quantita_Uva) INTO CONTATORE2 FROM Lotto_Vino WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
+SELECT (Quantita_Vino) INTO CONTATORE2 FROM Lotto_Vino WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
 IF (CONTATORE2 - CONTATORE1) < 0  THEN 
     RAISE ERRORE;
 END IF;
