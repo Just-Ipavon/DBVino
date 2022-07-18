@@ -105,7 +105,7 @@ EXCEPTION
 WHEN others THEN
     RAISE_APPLICATION_ERROR(-20005,' Gia Fatto Intervento DA MENO DI Tre Settimane');
 END;
-# ------------------------------------------7----------------------------- #
+# ------------------------------------------------------------------------ # NON SERVE
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Mosto
 BEFORE INSERT on Mosto
 FOR EACH ROW
@@ -120,19 +120,21 @@ EXCEPTION
 WHEN others THEN
     RAISE_APPLICATION_ERROR(-20006,' La quantita di mosto prodotto non puo superare la quantita di uva usata');
 END;
-# -----------------------------------------8----------------------------- #
+# -----------------------------------------7----------------------------- #
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Vino
 BEFORE INSERT on Lotto_Vino
 FOR EACH ROW
 DECLARE 
 CONTATORE1 Number;
 BEGIN
-SELECT (Quantita_Mosto) INTO CONTATORE1 FROM Mosto WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
+SELECT (COUNT(*)) INTO CONTATORE1
+FROM Pigiatura
+WHERE (Num_Lotto_Mosto = :NEW.Nome_Vino);
 IF (CONTATORE1 - :NEW.Quantita_Vino) < 0  THEN 
     RAISE_APPLICATION_ERROR(-20007,' La quantita di uva prodotta non puo superare la quantita di mosto prodotto');
 END IF;
 END;
-# ------------------------------------------9----------------------------- #
+# ------------------------------------------8----------------------------- #
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Raccolto
 BEFORE INSERT on Pigiatura
 FOR EACH ROW
@@ -145,7 +147,7 @@ IF (CONTATORE1 - :NEW.Quantita_Uva) < 0  THEN
 END IF;
 END; 
 
-# ------------------------------------------10----------------------------- #
+# ------------------------------------------------------------------------- # NON SERVE
 
 CREATE OR REPLACE TRIGGER Supera_100_Mosto 
 before INSERT or update ON Pigiatura 
@@ -167,7 +169,7 @@ BEGIN
         IF Out_Uva > 0 THEN 
         :NEW.Quantita_Uva := Out_Uva; 
         ELSE 
-        RAISE_APPLICATION_ERROR(-20009,'Percentuale gia piena'); 
+        RAISE_APPLICATION_ERROR(-20009,'Mosto gia Completo'); 
         END IF; 
     END IF;
     COMMIT; 

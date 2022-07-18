@@ -106,8 +106,7 @@ CREATE TABLE Raccolto_Vigneto(
 );
 
 CREATE TABLE Mosto(  
-    Num_Lotto_Mosto Number(4,0) NOT NULL, 
-    Quantita_Mosto Number(5,2) NOT NULL,
+    Num_Lotto_Mosto Number(4,0) NOT NULL,
     Nome_Sede varchar(255) NOT NULL, 
     Costo_Trasporto Number(4,0) NOT NULL,
     Data_Inizio_Ferm DATE NOT NULL,
