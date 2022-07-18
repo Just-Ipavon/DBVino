@@ -139,3 +139,60 @@ INSERT INTO Cliente(Ragione_Sociale,Nome_Cliente,Via_Cl,CAP_Cl,Citta_Cl) VALUES(
 INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(981235,TO_DATE('14/08/2019', 'DD/MM/YYYY'),'Evergreen di Giuseppe Verdi s.n.c.');
 
 INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Codice_Acquisto) VALUES(6458,'aglianico',9785,3,35.00,01245);
+
+# --------------------------------------------GEWURZTRAMINER--------------------------- #
+INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto)
+VALUES('Gewurztraminer',50,'Bianco',200);
+
+INSERT INTO Tipo\_Vino(Nome\_Vino,Acidita,Colore,Gradazione,Temp\_Servizio,Tannini,Zuccheri\_NF)\\ values('Traminer',6.5,'bianco',50,10.2,5,20);\\
+
+INSERT INTO Ente\_Certif(Nome\_Ente,Email,Via\_Ente,CAP\_Ente,Citta\_Ente)\\ VALUES('Eccerto','enteeccerto@postadellostato.it','via Roma','00042','Napoli');\\
+
+INSERT INTO Controllo\_Certificazione(Nome\_Vino,Nome\_Ente,Num\_Pratica,Data\_Certif,Esito,Certificato_Richiesto)\\ 
+values('Gewurztraminer','Eccerto',34,TO\_DATE('16/11/2020', 'DD/MM/YYYY'),1,'DOP');\\
+
+INSERT INTO Composizione\_Vino(Nome\_Vino,Specie,Percentuale)\\
+VALUES('Gewurztraminer','Gewurztraminer',95);\\
+
+INSERT INTO Vigneto(NomeV,ComuneV,Estensione)\\
+VALUES('Trentino','SudTirol',5);\\
+
+INSERT INTO Intervento(Num\_Fattura\_Intervento,Tipo\_Intervento,Costo\_Intervento)\\
+VALUES(888888,'Concimatura',100);\\
+
+INSERT INTO Intervento\_Subito(NomeV,ComuneV,Num\_Fattura\_Intervento,Data\_Intervento)\\ VALUES('Trentino','SudTirol',548766,TO\_DATE('11/10/2020', 'DD/MM/YYYY'));\\
+
+INSERT INTO Trattamento(Num\_Fattura\_Trattamento,Nome\_Trattamento,Princ\_Att\_Prod,Costo\_Trattamento)\\ VALUES(235418,'Pesticida','Appestato',100);\\
+
+INSERT INTO Trattamento\_Subito(NomeV,ComuneV,Num\_Fattura\_Trattamento,Data\_Trattamento)\\ VALUES('Trentino','SudTirol',267681,TO\_DATE('20/11/2020', 'DD/MM/YYYY'));\\
+
+INSERT INTO Raccolto\_Vigneto(Specie,Data\_Racc,NomeV,ComuneV,Quantita\_Raccolto,Costo\_Raccolta)\\ VALUES('Gewurztraminer',TO\_DATE('29/11/2020', 'DD/MM/YYYY'),'Trentino','SudTirol',220,300);\\
+
+INSERT INTO Sede\_Vinif(Via\_Sv,CAP\_Sv,Citta\_Sv,Nome\_Sede)\\
+VALUES('Via Cosenza 5','81025','Livorno','Sede Vino');\\
+
+INSERT INTO Mosto(Num\_Lotto\_Mosto,Nome\_Sede,Costo\_Trasporto,Data\_Inizio\_Ferm,Data\_Fine\_Ferm)\\ VALUES(2100,'Sede Vino',180,TO\_DATE('31/01/2021', 'DD/MM/YYYY'),TO\_DATE('02/03/2021', 'DD/MM/YYYY'));\\
+
+INSERT INTO Pigiatura(Num\_Lotto\_Mosto,Specie,Data\_Raccolto\_Usato,Quantita\_Uva,Costo\_Pigiatura)\\ VALUES(2100,'Gewurztraminer',TO\_DATE('29/11/2020', 'DD/MM/YYYY'),90,200);\\
+
+INSERT INTO Imbottigliatore(Nome\_Imbott,Via\_Imbott,CAP\_Imbott,Citta\_Imbott)\\
+VALUES('Bottiamoci','via Tutti 1','81021','Napoli');\\
+
+INSERT INTO Lotto_Vino(Num\_Lotto,Quantita\_Vino,Num\_Lotto\_Mosto,Nome\_Vino,Data\_Lotto,Nome\_Imbott,Costo\_Fermentazione)\\
+VALUES(3100,80,2100,'Aglianico',TO\_DATE('18/04/2021', 'DD/MM/YYYY'),'Imbottiglio Tutto',120);\\
+
+INSERT INTO Cantina(Nome\_Cantina,Via\_Cantina,CAP\_Cantina,Citta\_Cantina)\\
+VALUES('Accantoniamoci','via Strada 12','80127','Napoli');\\
+
+INSERT INTO Botte(Num\_Botte,Tipo\_Legno,Nome\_Cantina)\\
+VALUES(1,'Quercia','Accantoniamoci');\\
+
+INSERT INTO Invecchiamento(Num\_Botte,Num\_Lotto,Data\_Inizio\_Inv,Data\_Fine\_Inv)\\ VALUES(1,3100,TO\_DATE('19/04/2021', 'DD/MM/YYYY'),TO\_DATE('29/05/2021', 'DD/MM/YYYY'));\\
+
+INSERT INTO Cliente(Ragione\_Sociale,Nome\_Cliente,Via\_Cl,CAP\_Cl,Citta\_Cl)\\
+VALUES('Il Cormen s.r.c.','Camastra','Centro Direzionale di Napoli Isola C4','80133','Napoli');\\
+
+INSERT INTO Carrello(Codice\_Acquisto,Data\_Acquisto,Ragione\_Sociale)\\
+VALUES(982456,TO\_DATE('15/06/2022', 'DD/MM/YYYY'),'Il Cormen s.r.c.');\\
+
+INSERT INTO Confezione(Num\_Conf,Nome\_Vino,Num\_Lotto,Num\_Bott\_Conf,Prezzo\_Conf,Codice\_Acquisto)\\ VALUES(1,'Gewurztraminer',3100,6,100.00,123456);\\
