@@ -190,7 +190,7 @@ INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(02197
 
 INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Codice_Acquisto) VALUES(0000,'chianti',8751,9,90.00,021974);
 
-# --------------------------------------------GEWURZTRAMINER--------------------------- #
+# --------------------------------------------TUPLA 5 GEWURZTRAMINER--------------------------- #
 INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto)
 VALUES('Gewurztraminer',50,'Bianco',200);
 
