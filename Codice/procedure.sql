@@ -38,22 +38,15 @@ end;
 ---------------------
 #DAFARE: Effettuare un aumento del prezzo del vino piu venduto del 15%
 -------------------------------
-create or replace procedure Trova_Int_Tratt (In_Anno int) 
+create or replace procedure Trova_Int_Tratt (In_Anno number) 
 is 
-Nome_T varchar(255);
-Nome_I varchar(255);
-NomeV_T varchar(255);
-NomeV_I varchar(255);
-Anno number;
+Num_Fatt_Tratt number;
+Num_Fatt_Int number;
+Nome_Tratt varchar(255);
+Nome_Int varchar(255);
 begin
-select (Nome_Trattamento) into Nome_T from Trattamento_Subito where( extract(year from Data_Trattamento) = In_Anno);
-select (Tipo_Intervento) into Nome_I from Interventi_Subiti where(extract (year from Data_Intervento) = In_Anno);
-
-select (NomeV) into NomeV_T from Trattamento_Subito where(extract(year from Data_Trattamento) = In_Anno and Nome_Trattamento = Nome_T) group by Nome_Trattamento;
-select (NomeV) into NomeV_I from Interventi_Subiti where(extract(year from Data_Intervento) = In_Anno and Tipo_Intervento = Nome_T) group by Tipo_Intervento;
-
-dbms_output.put_line(NomeV_T);
-dbms_output.put_line(NomeV_I);
+select (Num_Fattura_Trattamento) into Num_Fatt_Tratt from Trattamento_Subito where(extract( year from(Data_Trattamento)) = In_Anno);
+select (Num_Fattura_Intervento) into Num_Fatt_Int from Interventi_Subiti where(extract (year from (Data_Intervento)) = In_Anno);
+select (Nome_Trattamento) into Nome_Tratt from Trattamento where(Num_Fattura_Trattamento = Num_Fatt_Tratt);
+select (Tipo_Intervento) into Nome_Int from Intervento where(Num_Fattura_Intervento = Num_Fatt_Int);
 end;
-Entita-Transizione-Trigger-Procedure.txt
-17 KB
