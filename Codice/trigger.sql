@@ -125,13 +125,14 @@ CREATE OR REPLACE TRIGGER Controllo_Quantita_Vino
 BEFORE INSERT on Lotto_Vino
 FOR EACH ROW
 DECLARE 
-CONTATORE1 Number;
+MOSTO Number;
 BEGIN
-SELECT (COUNT(*)) INTO CONTATORE1
+SELECT SUM(Quantita_Uva) INTO MOSTO
 FROM Pigiatura
-WHERE (Num_Lotto_Mosto = :NEW.Nome_Vino);
-IF (CONTATORE1 - :NEW.Quantita_Vino) < 0  THEN 
-    RAISE_APPLICATION_ERROR(-20007,' La quantita di uva prodotta non puo superare la quantita di mosto prodotto');
+WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
+IF (MOSTO - :NEW.Quantita_Vino) < 0  THEN 
+    DBMS_OUTPUT.PUT_LINE('La quantita di vino prodotto non puo superare la quantita di mosto prodotto, Correzione in corso'); 
+    :NEW.Quantita_Vino := MOSTO;
 END IF;
 END;
 # ------------------------------------------8----------------------------- #
@@ -146,9 +147,7 @@ IF (CONTATORE1 - :NEW.Quantita_Uva) < 0  THEN
     RAISE_APPLICATION_ERROR(-20008,' La quantita di uva usata non puo superare la quantita di uva raccolta');
 END IF;
 END; 
-
 # ------------------------------------------------------------------------- # NON SERVE
-
 CREATE OR REPLACE TRIGGER Supera_100_Mosto 
 before INSERT or update ON Pigiatura 
 FOR EACH ROW 
