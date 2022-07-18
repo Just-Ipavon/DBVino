@@ -131,7 +131,7 @@ CREATE TABLE Pigiatura(
 
 CREATE TABLE Carrello(
     Ragione_Sociale varchar(255) NOT NULL, 
-    Codice_Acquisto Number(4,0) NOT NULL, 
+    Codice_Acquisto Number(6,0) NOT NULL, 
     Data_Acquisto DATE NOT NULL,
 
     CONSTRAINT CE_Cliente_Carrello FOREIGN KEY (Ragione_Sociale) REFERENCES Cliente (Ragione_Sociale) ON DELETE CASCADE, 
@@ -165,7 +165,7 @@ CREATE TABLE Botte(
 
 CREATE TABLE Invecchiamento(  
     Num_Botte Number(3,0) NOT NULL,
-    Num_Lotto Number(3,0) NOT NULL, 
+    Num_Lotto Number(4,0) NOT NULL, 
     Data_Inizio_Inv date NOT NULL,
     Data_Fine_Inv date NOT NULL,
 
@@ -211,10 +211,10 @@ CREATE TABLE Composizione_Vino(
     CONSTRAINT CP_CV PRIMARY KEY (Nome_Vino,Specie)
 );
 
-CREATE TABLE Interventi_Subiti(
+CREATE TABLE Intervento_Subito(
     NomeV varchar(255) NOT NULL,
     ComuneV varchar(255) NOT NULL,
-    Num_Fattura_Intervento Number(3,0) NOT NULL,
+    Num_Fattura_Intervento Number(6,0) NOT NULL,
     Data_Intervento DATE NOT NULL,
 
     CONSTRAINT CE_Vigneto_Interventi_Subiti FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,
