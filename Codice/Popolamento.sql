@@ -144,7 +144,8 @@ INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Co
 INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto)
 VALUES('Gewurztraminer',50,'Bianco',200);
 
-INSERT INTO Tipo\_Vino(Nome\_Vino,Acidita,Colore,Gradazione,Temp\_Servizio,Tannini,Zuccheri\_NF)\\ values('Traminer',6.5,'bianco',50,10.2,5,20);\\
+INSERT INTO Tipo_Vino(Nome_Vino,Acidita,Colore,Gradazione,Temp_Servizio,Tannini,Zuccheri_NF)
+ values('Traminer',6.5,'bianco',50,10.2,5,20);
 
 INSERT INTO Ente\_Certif(Nome\_Ente,Email,Via\_Ente,CAP\_Ente,Citta\_Ente)\\ VALUES('Eccerto','enteeccerto@postadellostato.it','via Roma','00042','Napoli');\\
 
