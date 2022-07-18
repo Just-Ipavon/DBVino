@@ -140,6 +140,56 @@ INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(98123
 
 INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Codice_Acquisto) VALUES(6458,'aglianico',9785,3,35.00,01245);
 
+#--------------------------------------------TUPLA 4 Lacryma Christi--------------------------------------------#
+
+INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto) VALUES('Piedirosso',10,'Rosso',1000);
+INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto) VALUES('Aglianico',9,'Rosso',700);
+
+INSERT INTO Tipo_Vino(Nome_Vino,Acidita,Colore,Gradazione,Temp_Servizio,Tannini,Zuccheri_NF) values('Lacryma Christi',4,'rosso',12,12,1,2);
+
+INSERT INTO Ente_Certif(Nome_Ente,Email,Via_Ente,CAP_Ente,Citta_Ente) VALUES('Certifichiamo','entecertif@postadellostato.it','via nazionale','00042','Roma');
+
+INSERT INTO Controllo_Certificazione(Nome_Vino,Nome_Ente,Num_Pratica,Data_Certif,Esito,Certificato_Richiesto) values('chianti','Certifichiamo',321,TO_DATE('12/12/2018', 'DD/MM/YYYY'),1,'DOC');
+
+INSERT INTO Composizione_Vino(Nome_Vino,Specie,Percentuale) VALUES('Lacryma Christi','Aglianico',20);
+INSERT INTO Composizione_Vino(Nome_Vino,Specie,Percentuale) VALUES('Lacryma Christi','Piedirosso',80);
+
+INSERT INTO Vigneto(NomeV,ComuneV,Estensione) VALUES('Lacricma Del Vesuvio','Napoli',100);
+
+INSERT INTO Intervento(Num_Fattura_Intervento,Tipo_Intervento,Costo_Intervento) VALUES(648157,'Potatura',150);
+
+INSERT INTO Intervento_Subito(NomeV,ComuneV,Num_Fattura_Intervento,Data_Intervento) VALUES('Lacricma Del Vesuvio','Napoli',648157,TO_DATE('03/06/2018', 'DD/MM/YYYY'));
+
+INSERT INTO Trattamento(Num_Fattura_Trattamento,Nome_Trattamento,Princ_Att_Prod,Costo_Trattamento) VALUES(648572,'Pesticida','Pesticida1',250);
+
+INSERT INTO Trattamento_Subito(NomeV,ComuneV,Num_Fattura_Trattamento,Data_Trattamento) VALUES('Lacricma Del Vesuvio','Napoli',648572,TO_DATE('12/10/2018', 'DD/MM/YYYY'));
+
+INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Piedirossoolo',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Belvino','Benevento',800,400);
+INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Aglianico',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Belvino','Benevento',200,400);
+
+INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede) VALUES('Via nazionale 256','80100','Napoli','Cristo Vinificatore');
+
+INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm) VALUES(8461,'Cristo Vinificatore',300,TO_DATE('17/12/2019', 'DD/MM/YYYY'),TO_DATE('17/12/2020', 'DD/MM/YYYY'));
+
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura) VALUES(8461,'Piedirossoolo',TO_DATE('04/01/2020', 'DD/MM/YYYY'),800,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura) VALUES(8461,'Aglianico',TO_DATE('04/01/2020', 'DD/MM/YYYY'),200,290);
+
+INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Imbottiglia vino','via nazionale','80100','Napoli');
+
+INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(3540,1000,1234,'chianti',TO_DATE('09/01/2020', 'DD/MM/YYYY'),'Imbottigliamo',320);
+
+INSERT INTO Cantina(Nome_Cantina,Via_Cantina,CAP_Cantina,Citta_Cantina) VALUES('Sepolcro','via nazionale','80100','Napoli');
+
+INSERT INTO Botte(Num_Botte,Tipo_Legno,Nome_Cantina) VALUES(113,'Abete','Sepolctro');
+
+INSERT INTO Invecchiamento(Num_Botte,Num_Lotto,Data_Inizio_Inv,Data_Fine_Inv) VALUES(113,3540,TO_DATE('13/01/2020', 'DD/MM/YYYY'),TO_DATE('24/10/2020', 'DD/MM/YYYY'));
+
+INSERT INTO Cliente(Ragione_Sociale,Nome_Cliente,Via_Cl,CAP_Cl,Citta_Cl) VALUES('Evergreen di Antonio Ciuffini s.n.c.','Antonio Ciuffini','via cantina di zi michele','80145','Chiaiano');
+
+INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(021974,TO_DATE('24/12/2018', 'DD/MM/YYYY'),'Evergreen di Antonio Ciuffini s.n.c.');
+
+INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Codice_Acquisto) VALUES(0000,'chianti',8751,9,90.00,021974);
+
 # --------------------------------------------GEWURZTRAMINER--------------------------- #
 INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto)
 VALUES('Gewurztraminer',50,'Bianco',200);
