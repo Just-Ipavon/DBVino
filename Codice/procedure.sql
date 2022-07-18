@@ -34,9 +34,32 @@ select (costo) from(
 dbms_output.put_line(costo);
 end;
 ---------------------
-#DAFARE: Se un vino non viene venduto per piu di X tempo, effettuare uno sconto del 10%
----------------------
-#DAFARE: Effettuare un aumento del prezzo del vino piu venduto del 15%
+create procedure Sconto_Sovrapprezzo_Vino
+is
+
+costo number;
+num_lotto number;
+periodo_non_venduto number;
+data_creazione DATE;
+sconto number;
+
+begin
+
+select (Data_Lotto) into data_creazione from Lotto_Vino;
+select (Num_Lotto) into num_lotto from Lotto_Vino where(Data_Lotto = data_creazione);
+select (Prezzo_Conf) into costo from Confezione ;
+while (sysdate-data_creazione > 0 and periodo_non_venduto < 50) loop
+    periodo_non_venduto = periodo_non_venduto + 1;
+end loop;
+if(periodo_non_venduto = 50) then
+    sconto = costo/100 * 15;
+    costo = costo - sconto;
+end if;
+
+dbms_output.put_line('Vino scontato del 15%');
+
+end;
+
 -------------------------------
 create or replace procedure Trova_Int_Tratt (In_Anno number) 
 is 
