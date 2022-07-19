@@ -76,12 +76,14 @@ end;
 
 
 
-CREATE OR REPLACE PROCEDURE Acquisto (in_Ragione_Sociale varchar2, in_Nome_Vino varchar2)  
+CREATE OR REPLACE PROCEDURE Acquisto (in_Ragione_Sociale varchar2, in_Nome_Vino varchar2, in_Data_Lotto DATE)  
 IS 
 RANDOM Number;
 CONTATORE NUMBER;
 NUM_CONF NUMBER;
+NUM_LOTTO NUMBER;
 BEGIN
+select Num_Lotto into NUM_LOTTO from ( select Num_Lotto from Lotto_Vino order by dbms_random.value) where Data_Lotto >= in_Data_Lotto && Nome_Vino = in_Nome_Vino;
 select dbms_random.value(100000,999999) num into RANDOM from dual;
 SELECT (COUNT(*)) INTO CONTATORE
 FROM Carrello
@@ -89,7 +91,7 @@ WHERE (Codice_Acquisto = RANDOM);
 SELECT Num_Conf  into NUM_CONF FROM
 ( SELECT Num_Conf FROM Confezione
 ORDER BY dbms_random.value )
-WHERE rownum = 1 && Codice_Acquisto = NULL && Nome_Vino = in_Nome_Vino;
+WHERE rownum = 1 && Codice_Acquisto = NULL && Nome_Vino = in_Nome_Vino && Num_Lotto = NUM_LOTTO;
 IF (CONTATORE > 0) THEN
     exec Acquisto(in_Ragione_Sociale,in_Nome_Vino,in_Quantita_Conf);
     EXIT;
