@@ -249,7 +249,7 @@ VALUES(982456,TO\_DATE('15/06/2022', 'DD/MM/YYYY'),'Il Cormen s.r.c.');\\
 INSERT INTO Confezione(Num\_Conf,Nome\_Vino,Num\_Lotto,Num\_Bott\_Conf,Prezzo\_Conf,Codice\_Acquisto)\\ VALUES(1,'Gewurztraminer',3100,6,100.00,123456);\\
 
 
-#--------------------------------------------TUPLA BAROLO--------------------------------------------#
+#--------------------------------------------TUPLA 6 BAROLO--------------------------------------------#
 
 INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto) VALUES('Nebbiolo',5,'Rosso',400);
 
@@ -296,7 +296,7 @@ INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(72518
 INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Codice_Acquisto) VALUES(9328,'Barolo',8239,3,30.00,725189);
 
 
-#--------------------------------------------TUPLA FRANCIACORTA--------------------------------------------#
+#--------------------------------------------TUPLA 7 FRANCIACORTA--------------------------------------------#
 
 INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto) VALUES('Chardonnay',5,'bianco',400);
 
@@ -341,3 +341,5 @@ INSERT INTO Cliente(Ragione_Sociale,Nome_Cliente,Via_Cl,CAP_Cl,Citta_Cl) VALUES(
 INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(520359,TO_DATE('24/12/2018', 'DD/MM/YYYY'),'Azienda Ristoro di Camastra Francesco s.n.c.');
 
 INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Codice_Acquisto) VALUES(1041,'Barolo',9251,3,30.00,520592);
+
+# ----------------------------------------------TUPLA 8 ----------------------------------------------------------- #
