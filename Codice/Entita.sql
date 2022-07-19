@@ -133,6 +133,7 @@ CREATE TABLE Carrello(
     Ragione_Sociale varchar(255) NOT NULL, 
     Codice_Acquisto Number(6,0) NOT NULL, 
     Data_Acquisto DATE NOT NULL,
+    --Quantita_Conf NUMBER NOT NULL,
 
     CONSTRAINT CE_Cliente_Carrello FOREIGN KEY (Ragione_Sociale) REFERENCES Cliente (Ragione_Sociale) ON DELETE CASCADE, 
     CONSTRAINT CP_Carrello PRIMARY KEY (Codice_Acquisto)
@@ -178,7 +179,7 @@ CREATE TABLE Confezione(
     Num_Conf Number(4,0) NOT NULL,
     Nome_Vino varchar(255) NOT NULL,
     Num_Lotto number(6,0) NOT NULL,
-    Codice_Acquisto Number(6,0) NULL,
+    Codice_Acquisto Number(6,0),
     Prezzo_Conf Number(4,2) NOT NULL, 
     Num_Bott_Conf Number(3,0) not NULL,
 

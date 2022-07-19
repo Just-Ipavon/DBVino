@@ -73,3 +73,33 @@ select (Num_Fattura_Intervento) into Num_Fatt_Int from Interventi_Subiti where(e
 select (Nome_Trattamento) into Nome_Tratt from Trattamento where(Num_Fattura_Trattamento = Num_Fatt_Tratt);
 select (Tipo_Intervento) into Nome_Int from Intervento where(Num_Fattura_Intervento = Num_Fatt_Int);
 end;
+
+
+
+CREATE OR REPLACE PROCEDURE Acquisto (in_Ragione_Sociale varchar2, in_Nome_Vino varchar2)  
+IS 
+RANDOM Number;
+CONTATORE NUMBER;
+NUM_CONF NUMBER;
+BEGIN
+select dbms_random.value(100000,999999) num into RANDOM from dual;
+SELECT (COUNT(*)) INTO CONTATORE
+FROM Carrello
+WHERE (Codice_Acquisto = RANDOM);
+SELECT Num_Conf  into NUM_CONF FROM
+( SELECT Num_Conf FROM Confezione
+ORDER BY dbms_random.value )
+WHERE rownum = 1 && Codice_Acquisto = NULL && Nome_Vino = in_Nome_Vino;
+IF (CONTATORE > 0) THEN
+    exec Acquisto(in_Ragione_Sociale,in_Nome_Vino,in_Quantita_Conf);
+    EXIT;
+END IF; 
+dbms_output.put_line('Ha scelto il vino: ' || Nome_Vino); 
+
+exec Vino_Tavola(in_Nome_Vino);
+
+INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(RANDOM,TO_DATE(sysdate, 'DD/MM/YYYY'),in_Ragione_Sociale);
+UPDATE Confezione set Codice_Acquisto = RANDOM where Num_Conf = NUM_CONF;
+dbms_output.put_line('acquisto segnato'); 
+END;
+

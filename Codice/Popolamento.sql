@@ -22,8 +22,8 @@ INSERT INTO Trattamento(Num_Fattura_Trattamento,Nome_Trattamento,Princ_Att_Prod,
 
 INSERT INTO Trattamento_Subito(NomeV,ComuneV,Num_Fattura_Trattamento,Data_Trattamento) VALUES('Belvino','Montespertoli',123456,TO_DATE('12/10/2014', 'DD/MM/YYYY'));
 
-INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Canaiolo',TO_DATE('12/12/2015', 'DD/MM/YYYY'),'Belvino','Benevento',200,400);
-INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Sangiovese',TO_DATE('12/12/2015', 'DD/MM/YYYY'),'Belvino','Benevento',100,400);
+INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Canaiolo',TO_DATE('12/12/2015', 'DD/MM/YYYY'),'Belvino','Montespertoli',200,400);
+INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Sangiovese',TO_DATE('12/12/2015', 'DD/MM/YYYY'),'Belvino','Montespertoli',100,400);
 
 INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede) VALUES('Via nazionale 235','50025','Montespertoli','Vinificatoriamo');
 
@@ -178,7 +178,7 @@ INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALU
 
 INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(3540,1000,1234,'chianti',TO_DATE('09/01/2020', 'DD/MM/YYYY'),'Imbottigliamo',320);
 
-INSERT INTO Cantina(Nome_Cantina,Via_Cantina,CAP_Cantina,Citta_Cantina) VALUES('Sepolcro','via nazionale','80100','Napoli');
+INSERT INTO Cantina(Nome_Cantina,Via_Cantina,CAP_Cantina,Citta_Cantina) VALUES('Sepolcro','viale degli ulivi','80100','Napoli');
 
 INSERT INTO Botte(Num_Botte,Tipo_Legno,Nome_Cantina) VALUES(113,'Abete','Sepolctro');
 
