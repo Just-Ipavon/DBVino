@@ -294,3 +294,50 @@ INSERT INTO Cliente(Ragione_Sociale,Nome_Cliente,Via_Cl,CAP_Cl,Citta_Cl) VALUES(
 INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(725189,TO_DATE('24/12/2018', 'DD/MM/YYYY'),'Azienda Ristoro di Camastra Francesco s.n.c.');
 
 INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Codice_Acquisto) VALUES(9328,'Barolo',8239,3,30.00,725189);
+
+
+#--------------------------------------------TUPLA FRANCIACORTA--------------------------------------------#
+
+INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto) VALUES('Chardonnay',5,'bianco',400);
+
+INSERT INTO Tipo_Vino(Nome_Vino,Acidita,Colore,Gradazione,Temp_Servizio,Tannini,Zuccheri_NF) values('Franciacorta',4,'bianco',9.5,22,1,2);
+
+--INSERT INTO Ente_Certif(Nome_Ente,Email,Via_Ente,CAP_Ente,Citta_Ente) VALUES('Certifichiamo','entecertif@postadellostato.it','via nazionale','00042','Roma');
+
+INSERT INTO Controllo_Certificazione(Nome_Vino,Nome_Ente,Num_Pratica,Data_Certif,Esito,Certificato_Richiesto) values('Franciacorta','Certifichiamo',242,TO_DATE('12/12/2021', 'DD/MM/YYYY'),1,'DOCG');
+
+INSERT INTO Composizione_Vino(Nome_Vino,Specie,Percentuale) VALUES('Franciacorta','Chardonnay',100);
+
+INSERT INTO Vigneto(NomeV,ComuneV,Estensione) VALUES('Franciavino','Brescia',100);
+
+INSERT INTO Intervento(Num_Fattura_Intervento,Tipo_Intervento,Costo_Intervento) VALUES(872657,'Potatura',150);
+
+INSERT INTO Intervento_Subito(NomeV,ComuneV,Num_Fattura_Intervento,Data_Intervento) VALUES('Franciavino','Caramagna di Piemonte',872657,TO_DATE('12/10/2018', 'DD/MM/YYYY'));
+
+INSERT INTO Trattamento(Num_Fattura_Trattamento,Nome_Trattamento,Princ_Att_Prod,Costo_Trattamento) VALUES(410259,'Pesticida','Pesticida1',250);
+
+INSERT INTO Trattamento_Subito(NomeV,ComuneV,Num_Fattura_Trattamento,Data_Trattamento) VALUES('410259','Brescia',410259,TO_DATE('12/11/2018', 'DD/MM/YYYY'));
+
+INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Franciacorta',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Franciacorta','Brescia',200,400);
+
+INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede) VALUES('Via nazionale 235','25121','Brescia','Vini della valle');
+
+INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm) VALUES(4120,'Vini della valle',300,TO_DATE('17/12/2015', 'DD/MM/YYYY'),TO_DATE('17/12/2016', 'DD/MM/YYYY'));
+
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura) VALUES(4120,'Franciacorta',TO_DATE('12/12/2015', 'DD/MM/YYYY'),10,290);
+
+INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Imbottiglia Sul Monte','via nazionale','10060','Candiolo');
+
+INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(9251,70,4120,'Barolo',TO_DATE('23/12/2016', 'DD/MM/YYYY'),'Imbottigliamo',320);
+
+INSERT INTO Cantina(Nome_Cantina,Via_Cantina,CAP_Cantina,Citta_Cantina) VALUES('Cantina del monte','via nazionale','10060','Candiolo');
+
+INSERT INTO Botte(Num_Botte,Tipo_Legno,Nome_Cantina) VALUES(581,'Acero','Cantina del monte');
+
+INSERT INTO Invecchiamento(Num_Botte,Num_Lotto,Data_Inizio_Inv,Data_Fine_Inv) VALUES(581,9251,TO_DATE('24/12/2016', 'DD/MM/YYYY'),TO_DATE('24/12/2020', 'DD/MM/YYYY'));
+
+INSERT INTO Cliente(Ragione_Sociale,Nome_Cliente,Via_Cl,CAP_Cl,Citta_Cl) VALUES('Azienda Ristoro di Camastra Francesco s.n.c.','Francesco Camastra','via giuseppe verdi','88020','Catanzaro');
+
+INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(520359,TO_DATE('24/12/2018', 'DD/MM/YYYY'),'Azienda Ristoro di Camastra Francesco s.n.c.');
+
+INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Codice_Acquisto) VALUES(1041,'Barolo',9251,3,30.00,520592);
