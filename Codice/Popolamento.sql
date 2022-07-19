@@ -78,9 +78,9 @@ INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Dat
 
 INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura) VALUES(2135,'Falanghina',TO_DATE('12/12/2015', 'DD/MM/YYYY'),10,290);
 
-INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Imbottigliamo','via nazionale','81025','marcianise');
+INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Marcianise Imbott','via nazionale','81025','marcianise');
 
-INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(6251,70,2135,'falanghina',TO_DATE('23/12/2016', 'DD/MM/YYYY'),'Imbottigliamo',320);
+INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(6251,70,2135,'falanghina',TO_DATE('23/12/2016', 'DD/MM/YYYY'),'Marcianise Imbott',320);
 
 INSERT INTO Cantina(Nome_Cantina,Via_Cantina,CAP_Cantina,Citta_Cantina) VALUES('Cantinasi','via nazionale','81025','marcianise');
 
@@ -171,12 +171,12 @@ INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede) VALUES('Via nazionale 2
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm) VALUES(8461,'Cristo Vinificatore',300,TO_DATE('17/12/2019', 'DD/MM/YYYY'),TO_DATE('17/12/2020', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura) VALUES(8461,'Piedirossoolo',TO_DATE('04/01/2020', 'DD/MM/YYYY'),800,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura) VALUES(8461,'Piedirosso',TO_DATE('04/01/2020', 'DD/MM/YYYY'),800,290);
 INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura) VALUES(8461,'Aglianico',TO_DATE('04/01/2020', 'DD/MM/YYYY'),200,290);
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Imbottiglia vino','via nazionale','80100','Napoli');
 
-INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(3540,1000,1234,'chianti',TO_DATE('09/01/2020', 'DD/MM/YYYY'),'Imbottigliamo',320);
+INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(3540,1000,1234,'chianti',TO_DATE('09/01/2020', 'DD/MM/YYYY'),'Imbottiglia vino',320);
 
 INSERT INTO Cantina(Nome_Cantina,Via_Cantina,CAP_Cantina,Citta_Cantina) VALUES('Sepolcro','viale degli ulivi','80100','Napoli');
 
@@ -192,10 +192,10 @@ INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Co
 
 # --------------------------------------------TUPLA 5 GEWURZTRAMINER--------------------------- #
 INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto)
-VALUES('Gewurztraminer',50,'Bianco',200);
+VALUES('Traminer',50,'Bianco',200);
 
 INSERT INTO Tipo_Vino(Nome_Vino,Acidita,Colore,Gradazione,Temp_Servizio,Tannini,Zuccheri_NF)
- values('Traminer',6.5,'bianco',50,10.2,5,20);
+ values('Gewurztraminer',6.5,'bianco',50,10.2,5,20);
 
 INSERT INTO Ente\_Certif(Nome\_Ente,Email,Via\_Ente,CAP\_Ente,Citta\_Ente)\\ VALUES('Eccerto','enteeccerto@postadellostato.it','via Roma','00042','Napoli');\\
 
@@ -217,14 +217,14 @@ INSERT INTO Trattamento(Num\_Fattura\_Trattamento,Nome\_Trattamento,Princ\_Att\_
 
 INSERT INTO Trattamento\_Subito(NomeV,ComuneV,Num\_Fattura\_Trattamento,Data\_Trattamento)\\ VALUES('Trentino','SudTirol',267681,TO\_DATE('20/11/2020', 'DD/MM/YYYY'));\\
 
-INSERT INTO Raccolto\_Vigneto(Specie,Data\_Racc,NomeV,ComuneV,Quantita\_Raccolto,Costo\_Raccolta)\\ VALUES('Gewurztraminer',TO\_DATE('29/11/2020', 'DD/MM/YYYY'),'Trentino','SudTirol',220,300);\\
+INSERT INTO Raccolto\_Vigneto(Specie,Data\_Racc,NomeV,ComuneV,Quantita\_Raccolto,Costo\_Raccolta)\\ VALUES('Traminer',TO\_DATE('29/11/2020', 'DD/MM/YYYY'),'Trentino','SudTirol',220,300);\\
 
 INSERT INTO Sede\_Vinif(Via\_Sv,CAP\_Sv,Citta\_Sv,Nome\_Sede)\\
 VALUES('Via Cosenza 5','81025','Livorno','Sede Vino');\\
 
 INSERT INTO Mosto(Num\_Lotto\_Mosto,Nome\_Sede,Costo\_Trasporto,Data\_Inizio\_Ferm,Data\_Fine\_Ferm)\\ VALUES(2100,'Sede Vino',180,TO\_DATE('31/01/2021', 'DD/MM/YYYY'),TO\_DATE('02/03/2021', 'DD/MM/YYYY'));\\
 
-INSERT INTO Pigiatura(Num\_Lotto\_Mosto,Specie,Data\_Raccolto\_Usato,Quantita\_Uva,Costo\_Pigiatura)\\ VALUES(2100,'Gewurztraminer',TO\_DATE('29/11/2020', 'DD/MM/YYYY'),90,200);\\
+INSERT INTO Pigiatura(Num\_Lotto\_Mosto,Specie,Data\_Raccolto\_Usato,Quantita\_Uva,Costo\_Pigiatura)\\ VALUES(2100,'Traminer',TO\_DATE('29/11/2020', 'DD/MM/YYYY'),90,200);\\
 
 INSERT INTO Imbottigliatore(Nome\_Imbott,Via\_Imbott,CAP\_Imbott,Citta\_Imbott)\\
 VALUES('Bottiamoci','via Tutti 1','81021','Napoli');\\
@@ -271,7 +271,7 @@ INSERT INTO Trattamento(Num_Fattura_Trattamento,Nome_Trattamento,Princ_Att_Prod,
 
 INSERT INTO Trattamento_Subito(NomeV,ComuneV,Num_Fattura_Trattamento,Data_Trattamento) VALUES('Base del Vino','Caramagna di Piemonte',942645,TO_DATE('12/11/2018', 'DD/MM/YYYY'));
 
-INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Barolo',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Base del Vino','Caramagna di Piemonte',200,400);
+INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Nebbiolo',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Base del Vino','Caramagna di Piemonte',200,400);
 
 INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede) VALUES('Via nazionale 235','10060','Candiolo','Vini del monte');
 
@@ -281,7 +281,7 @@ INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Co
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Imbottiglia Sul Monte','via nazionale','10060','Candiolo');
 
-INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(8239,70,5275,'Barolo',TO_DATE('23/12/2016', 'DD/MM/YYYY'),'Imbottigliamo',320);
+INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(8239,70,5275,'Barolo',TO_DATE('23/12/2016', 'DD/MM/YYYY'),'Imbottiglia Sul Monte',320);
 
 INSERT INTO Cantina(Nome_Cantina,Via_Cantina,CAP_Cantina,Citta_Cantina) VALUES('Cantina del monte','via nazionale','10060','Candiolo');
 
@@ -304,7 +304,7 @@ INSERT INTO Tipo_Vino(Nome_Vino,Acidita,Colore,Gradazione,Temp_Servizio,Tannini,
 
 --INSERT INTO Ente_Certif(Nome_Ente,Email,Via_Ente,CAP_Ente,Citta_Ente) VALUES('Certifichiamo','entecertif@postadellostato.it','via nazionale','00042','Roma');
 
-INSERT INTO Controllo_Certificazione(Nome_Vino,Nome_Ente,Num_Pratica,Data_Certif,Esito,Certificato_Richiesto) values('Franciacorta','Certifichiamo',242,TO_DATE('12/12/2021', 'DD/MM/YYYY'),1,'DOCG');
+INSERT INTO Controllo_Certificazione(Nome_Vino,Nome_Ente,Num_Pratica,Data_Certif,Esito,Certificato_Richiesto) values('Franciacorta','Certifichiamo',292,TO_DATE('12/12/2021', 'DD/MM/YYYY'),1,'DOCG');
 
 INSERT INTO Composizione_Vino(Nome_Vino,Specie,Percentuale) VALUES('Franciacorta','Chardonnay',100);
 
@@ -316,9 +316,9 @@ INSERT INTO Intervento_Subito(NomeV,ComuneV,Num_Fattura_Intervento,Data_Interven
 
 INSERT INTO Trattamento(Num_Fattura_Trattamento,Nome_Trattamento,Princ_Att_Prod,Costo_Trattamento) VALUES(410259,'Pesticida','Pesticida1',250);
 
-INSERT INTO Trattamento_Subito(NomeV,ComuneV,Num_Fattura_Trattamento,Data_Trattamento) VALUES('410259','Brescia',410259,TO_DATE('12/11/2018', 'DD/MM/YYYY'));
+INSERT INTO Trattamento_Subito(NomeV,ComuneV,Num_Fattura_Trattamento,Data_Trattamento) VALUES('Francavino','Brescia',410259,TO_DATE('12/11/2018', 'DD/MM/YYYY'));
 
-INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Franciacorta',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Franciacorta','Brescia',200,400);
+INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Chardonnay',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Francavino','Brescia',200,400);
 
 INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede) VALUES('Via nazionale 235','25121','Brescia','Vini della valle');
 
@@ -326,9 +326,9 @@ INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Dat
 
 INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura) VALUES(4120,'Franciacorta',TO_DATE('12/12/2015', 'DD/MM/YYYY'),10,290);
 
-INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Imbottiglia Sul Monte','via nazionale','10060','Candiolo');
+INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Imbottiglia alla valle','via nazionale','10060','Candiolo');
 
-INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(9251,70,4120,'Barolo',TO_DATE('23/12/2016', 'DD/MM/YYYY'),'Imbottigliamo',320);
+INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(9251,70,4120,'Barolo',TO_DATE('23/12/2016', 'DD/MM/YYYY'),'Imbottiglia alla valle',320);
 
 INSERT INTO Cantina(Nome_Cantina,Via_Cantina,CAP_Cantina,Citta_Cantina) VALUES('Cantina del monte','via nazionale','10060','Candiolo');
  
@@ -343,3 +343,49 @@ INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(52035
 INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Codice_Acquisto) VALUES(1041,'Barolo',9251,3,30.00,520592);
 
 # ----------------------------------------------TUPLA 8 ----------------------------------------------------------- #
+
+# ----------------------------------------------TUPLA 9 DONNAFUGATA----------------------------------------------------------- #
+
+INSERT INTO Tipo_Uva(Specie,Glucosio,Colore,Costo_Impianto) VALUES('Catarratto',5,'bianco',400);
+
+INSERT INTO Tipo_Vino(Nome_Vino,Acidita,Colore,Gradazione,Temp_Servizio,Tannini,Zuccheri_NF) values('Donnafugata',4,'bianco',9.5,22,1,2);
+
+INSERT INTO Ente_Certif(Nome_Ente,Email,Via_Ente,CAP_Ente,Citta_Ente) VALUES('Ente Certificazione Vino','entecertif@postadellostato.it','via nazionale','00042','Roma');
+
+INSERT INTO Controllo_Certificazione(Nome_Vino,Nome_Ente,Num_Pratica,Data_Certif,Esito,Certificato_Richiesto) values('Donnafugata','Ente Certificazione Vino',632,TO_DATE('12/12/2021', 'DD/MM/YYYY'),1,'DOCG');
+
+INSERT INTO Composizione_Vino(Nome_Vino,Specie,Percentuale) VALUES('Donnafugata','Catarratto',100);
+
+INSERT INTO Vigneto(NomeV,ComuneV,Estensione) VALUES('Siculamente','Trapani',100);
+
+INSERT INTO Intervento(Num_Fattura_Intervento,Tipo_Intervento,Costo_Intervento) VALUES(123093,'Potatura',150);
+
+INSERT INTO Intervento_Subito(NomeV,ComuneV,Num_Fattura_Intervento,Data_Intervento) VALUES('Siculamente','Trapani',123093,TO_DATE('12/10/2018', 'DD/MM/YYYY'));
+
+INSERT INTO Trattamento(Num_Fattura_Trattamento,Nome_Trattamento,Princ_Att_Prod,Costo_Trattamento) VALUES(834274,'Pesticida','Pesticida1',250);
+
+INSERT INTO Trattamento_Subito(NomeV,ComuneV,Num_Fattura_Trattamento,Data_Trattamento) VALUES('Siculamente','Trapani',834274,TO_DATE('12/11/2018', 'DD/MM/YYYY'));
+
+INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta) VALUES('Catarratto',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Siculamente','Trapani',200,400);
+
+INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede) VALUES('Via dei campi 5','90121','Palermo','Vini isolani');
+
+INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm) VALUES(5102,'Vini isolani',300,TO_DATE('17/12/2015', 'DD/MM/YYYY'),TO_DATE('17/12/2016', 'DD/MM/YYYY'));
+
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura) VALUES(5102,'Donnafugata',TO_DATE('12/12/2015', 'DD/MM/YYYY'),10,290);
+
+INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Imbottigliatore etna','via nazionale','90121','Palermo');
+
+INSERT INTO Lotto_Vino(Num_Lotto,Quantita_Vino,Num_Lotto_Mosto,Nome_Vino,Data_Lotto,Nome_Imbott,Costo_Fermentazione) VALUES(9520,70,5102,'Donnafugata',TO_DATE('23/12/2016', 'DD/MM/YYYY'),'Imbottigliatore etna',320);
+
+INSERT INTO Cantina(Nome_Cantina,Via_Cantina,CAP_Cantina,Citta_Cantina) VALUES('Piedi del vulcano','via nazionale','90121','Palermo');
+ 
+INSERT INTO Botte(Num_Botte,Tipo_Legno,Nome_Cantina) VALUES(981,'abete','Piedi del vulcano');
+
+INSERT INTO Invecchiamento(Num_Botte,Num_Lotto,Data_Inizio_Inv,Data_Fine_Inv) VALUES(981,9520,TO_DATE('24/12/2016', 'DD/MM/YYYY'),TO_DATE('24/12/2020', 'DD/MM/YYYY'));
+
+INSERT INTO Cliente(Ragione_Sociale,Nome_Cliente,Via_Cl,CAP_Cl,Citta_Cl) VALUES('Azienda Vinicola s.n.c.','Giulio Giunta','via mantthan','50100','Firenze');
+
+INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(529545,TO_DATE('24/12/2018', 'DD/MM/YYYY'),'Azienda Vinicola s.n.c.');
+
+INSERT INTO Confezione(Num_Conf,Nome_Vino,Num_Lotto,Num_Bott_Conf,Prezzo_Conf,Codice_Acquisto) VALUES(9210,'Donnafugata',9520,3,30.00,529545);
