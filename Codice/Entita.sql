@@ -141,7 +141,7 @@ CREATE TABLE Carrello(
 
 CREATE TABLE Lotto_Vino(
     Num_Lotto Number(4,0) NOT NULL, 
-    Quantita_Vino Number(5,2) NOT NULL,
+    Quantita_Vino Number NOT NULL,
     Num_Lotto_Mosto Number(4,0) NOT NULL,
     Nome_Vino varchar(255) NOT NULL,
     Data_Lotto DATE NOT NULL,
@@ -180,7 +180,7 @@ CREATE TABLE Confezione(
     Nome_Vino varchar(255) NOT NULL,
     Num_Lotto number(6,0) NOT NULL,
     Codice_Acquisto Number(6,0),
-    Prezzo_Conf Number(4,2) NOT NULL, 
+    Prezzo_Conf Number NOT NULL, 
     Num_Bott_Conf Number(3,0) not NULL,
 
     CONSTRAINT CE_Carrello_Conf FOREIGN KEY (Codice_Acquisto) REFERENCES Carrello(Codice_Acquisto) ON DELETE CASCADE, 
@@ -205,7 +205,7 @@ CREATE TABLE Controllo_Certificazione(
 CREATE TABLE Composizione_Vino(
 	Nome_Vino varchar(255) NOT NULL,
     Specie varchar(255) NOT NULL,
-    Percentuale Number(3,1) NOT NULL,
+    Percentuale Number NOT NULL,
     
     CONSTRAINT CE_Tipo_Uva_Composizione_Vino_ FOREIGN KEY (Specie) REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE,
     CONSTRAINT CE_Tipo_Vino_Composizione_Vino FOREIGN KEY (Nome_Vino) REFERENCES Tipo_Vino (Nome_Vino) ON DELETE CASCADE,
