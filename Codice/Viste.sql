@@ -8,14 +8,11 @@ CREATE VIEW CONF AS
     FROM Confezione
     GROUP BY Confezione.Num_Conf, Confezione.Nome_Vino;
 
-CREATE VIEW Carrello_Utente AS(
-    SELECT Nome_Vino,Gradazione,Colore 
-    FROM Tipo_Vino
-    WHERE Nome_Vino = Carrello.Nome_Vino;
-)
-CREATE VIEW VINO AS
-    SELECT Tipo_Vino.Nome_Vino,Tipo_Vino.Colore,Tipo_Vino.Gradazione,Tipo_Vino.Temp_Servizio, Controllo_Certificazione.Certificato_Richiesto
-    FROM Tipo_Vino, Controllo_Certificazione
-    WHERE  Controllo_Certificazione.Esito = 1
-    GROUP BY Tipo_Vino.Nome_Vino,Tipo_Vino.Colore,Tipo_Vino.Gradazione,Tipo_Vino.Temp_Servizio, Controllo_Certificazione.Certificato_Richiesto
-    ORDER BY Tipo_Vino.Nome_Vino ASC;
+CREATE VIEW Vino_Con_Certif AS
+SELECT Tipo_Vino.Nome_Vino,Tipo_Vino.Colore,Tipo_Vino.Gradazione,Tipo_Vino.Temp_Servizio, Controllo_Certificazione.Certificato_Richiesto
+FROM Tipo_Vino 
+INNER JOIN Controllo_Certificazione
+ON Tipo_Vino.Nome_Vino = Controllo_Certificazione.Nome_Vino
+where Controllo_Certificazione.Esito = 1
+ORDER BY Tipo_Vino.Nome_Vino ASC;
+
