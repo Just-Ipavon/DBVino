@@ -1,5 +1,4 @@
 %------------------------------------------CHIANTI
--1 \textbf{Chianti}\\
 INSERT INTO Tipo\_Uva(Specie,Glucosio,Colore,Costo\_Impianto)\\
 VALUES('Sangiovese',10,'Rosso',1000);\\
 INSERT INTO Tipo\_Uva(Specie,Glucosio,Colore,Costo\_Impianto)\\
@@ -304,7 +303,7 @@ INSERT INTO Confezione(Num\_Conf,Nome\_Vino,Num\_Lotto,Num\_Bott\_Conf,Prezzo\_C
 
 %---------------------------BRUNELLO
 -6 \textbf{Brunello}\\
-NSERT INTO Tipo\_Uva(Specie,Glucosio,Colore,Costo\_Impianto)\\
+INSERT INTO Tipo\_Uva(Specie,Glucosio,Colore,Costo\_Impianto)\\
 VALUES('Sangiovese',5,'Rosso',200);\\
 
 INSERT INTO Tipo\_Vino(Nome\_Vino,Acidita,Colore,Gradazione,Temp\_Servizio,Tannini,Zuccheri\_NF)\\ values('Brunello',7.5,'Rosso',20,22.5,6,21);\\
