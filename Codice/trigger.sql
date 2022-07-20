@@ -91,13 +91,13 @@ WHEN others THEN
 END;
 # -----------------------------------------6----------------------------- #
 CREATE OR REPLACE TRIGGER Limite_Intervento
-BEFORE INSERT on Interventi_Subiti
+BEFORE INSERT on Intervento_Subito
 FOR EACH ROW
 DECLARE 
 CONTATORE DATE;
 ERRORE EXCEPTION;
 BEGIN
-SELECT MAX(Data_Intervento) INTO CONTATORE FROM Interventi_Subiti WHERE (NomeV = :NEW.NomeV);
+SELECT MAX(Data_Intervento) INTO CONTATORE FROM Intervento_Subito WHERE (NomeV = :NEW.NomeV);
 IF (CONTATORE - :NEW.Data_Intervento) < 21  THEN 
     RAISE ERRORE;
 END IF;
