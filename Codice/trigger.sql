@@ -105,21 +105,6 @@ EXCEPTION
 WHEN others THEN
     RAISE_APPLICATION_ERROR(-20005,' Gia Fatto Intervento DA MENO DI Tre Settimane');
 END;
-# ------------------------------------------------------------------------ # NON SERVE
-CREATE OR REPLACE TRIGGER Controllo_Quantita_Mosto
-BEFORE INSERT on Mosto
-FOR EACH ROW
-DECLARE 
-CONTATORE2 Number;
-BEGIN
-SELECT (Quantita_Raccolto) INTO CONTATORE2 FROM Raccolto_Vigneto WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
-IF (CONTATORE2 - :NEW.Quantita_Mosto) < 0  THEN 
-    RAISE ERRORE;
-END IF;
-EXCEPTION
-WHEN others THEN
-    RAISE_APPLICATION_ERROR(-20006,' La quantita di mosto prodotto non puo superare la quantita di uva usata');
-END;
 # -----------------------------------------7----------------------------- #
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Vino
 BEFORE INSERT on Lotto_Vino
@@ -147,29 +132,3 @@ IF (CONTATORE1 - :NEW.Quantita_Uva) < 0  THEN
     RAISE_APPLICATION_ERROR(-20008,' La quantita di uva usata non puo superare la quantita di uva raccolta');
 END IF;
 END; 
-# ------------------------------------------------------------------------- # NON SERVE
-CREATE OR REPLACE TRIGGER Supera_100_Mosto 
-before INSERT or update ON Pigiatura 
-FOR EACH ROW 
-DECLARE 
-    pragma autonomous_transaction; 
-    Somma_Uva Number; 
-    Out_Uva Number; 
-    Quantita_TOT Number;
-BEGIN 
-    SELECT (Quantita_Mosto) INTO Quantita_TOT FROM Mosto WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
-    SELECT( 
-        SUM(Quantita_Uva) 
-    ) 
-    INTO (Somma_Uva) FROM (Pigiatura) where (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto); 
-    IF(Somma_Uva + :NEW.Quantita_Uva > Quantita_TOT) THEN 
-        DBMS_OUTPUT.PUT_LINE('Supera il totale, Correzione in corso'); 
-            Out_Uva := Quantita_TOT - Somma_Uva; 
-        IF Out_Uva > 0 THEN 
-        :NEW.Quantita_Uva := Out_Uva; 
-        ELSE 
-        RAISE_APPLICATION_ERROR(-20009,'Mosto gia Completo'); 
-        END IF; 
-    END IF;
-    COMMIT; 
-END;
