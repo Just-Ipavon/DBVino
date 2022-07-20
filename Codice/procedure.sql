@@ -131,6 +131,6 @@ EXCEPTION
         INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(RANDOM,TO_DATE(sysdate, 'DD/MM/YYYY'),in_Ragione_Sociale);
         UPDATE Confezione set Codice_Acquisto = RANDOM where Num_Conf = NUM_CONF;
         COMMIT;
-        dbms_output.put_line('acquisto segnato'); 
+        dbms_output.put_line('acquisto segnato con nymero ordine:' || RANDOM); 
 END;
     
