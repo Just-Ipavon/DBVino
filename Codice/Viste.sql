@@ -48,3 +48,10 @@ LEFT JOIN ON
 SELECT (Esito) FROM Controllo_Certificazione
 WHERE (Tipo_Vino.Nome_Vino = Controllo_Certificazione.Nome_Vino) AND (Controllo_Certificazione.Esito = 1)
 );
+
+CREATE OR REPLACE VIEW VINO AS
+    SELECT Tipo_Vino.Nome_Vino,Tipo_Vino.Colore,Tipo_Vino.Gradazione,Tipo_Vino.Temp_Servizio, Controllo_Certificazione.Certificato_Richiesto
+    FROM Tipo_Vino, Controllo_Certificazione
+    WHERE  Controllo_Certificazione.Esito = 1
+    GROUP BY Tipo_Vino.Nome_Vino,Tipo_Vino.Colore,Tipo_Vino.Gradazione,Tipo_Vino.Temp_Servizio, Controllo_Certificazione.Certificato_Richiesto
+    ORDER BY Tipo_Vino.Nome_Vino ASC;
