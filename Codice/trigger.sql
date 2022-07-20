@@ -82,7 +82,7 @@ CONTATORE DATE;
 ERRORE EXCEPTION;
 BEGIN
 SELECT MAX(Data_Trattamento) INTO CONTATORE FROM Trattamento_Subito WHERE (NomeV = :NEW.NomeV);
-IF (CONTATORE - :NEW.Data_Trattamento )/30 <= 2  THEN 
+IF (:NEW.Data_Trattamento - CONTATORE)/30 <= 2  THEN 
     RAISE ERRORE;
 END IF;
 EXCEPTION
@@ -98,7 +98,7 @@ CONTATORE DATE;
 ERRORE EXCEPTION;
 BEGIN
 SELECT MAX(Data_Intervento) INTO CONTATORE FROM Intervento_Subito WHERE (NomeV = :NEW.NomeV);
-IF (CONTATORE - :NEW.Data_Intervento) < 21  THEN 
+IF (:NEW.Data_Intervento - CONTATORE) <= 21  THEN 
     RAISE ERRORE;
 END IF;
 EXCEPTION
@@ -115,7 +115,7 @@ BEGIN
 SELECT SUM(Quantita_Uva) INTO MOSTO
 FROM Pigiatura
 WHERE (Num_Lotto_Mosto = :NEW.Num_Lotto_Mosto);
-IF (MOSTO - :NEW.Quantita_Vino) < 0  THEN 
+IF (:NEW.Quantita_Vino - MOSTO) < 0  THEN 
     DBMS_OUTPUT.PUT_LINE('La quantita di vino prodotto non puo superare la quantita di mosto prodotto, Correzione in corso'); 
     :NEW.Quantita_Vino := MOSTO;
 END IF;
@@ -128,7 +128,7 @@ DECLARE
 CONTATORE1 Number;
 BEGIN
 SELECT (Quantita_Raccolto) INTO CONTATORE1 FROM Raccolto_Vigneto WHERE (Specie = :NEW.Specie);
-IF (CONTATORE1 - :NEW.Quantita_Uva) < 0  THEN 
+IF (:NEW.Quantita_Uva - CONTATORE1) < 0  THEN 
     RAISE_APPLICATION_ERROR(-20008,' La quantita di uva usata non puo superare la quantita di uva raccolta');
 END IF;
 END; 
