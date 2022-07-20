@@ -153,18 +153,18 @@ INSERT INTO Controllo_Certificazione(Nome_Vino,Nome_Ente,Num_Pratica,Data_Certif
 INSERT INTO Composizione_Vino(Nome_Vino,Specie,Percentuale)  VALUES('Lacryma Christi','Aglianico',20);
 INSERT INTO Composizione_Vino(Nome_Vino,Specie,Percentuale)  VALUES('Lacryma Christi','Piedirosso',80);
 
-INSERT INTO Vigneto(NomeV,ComuneV,Estensione)  VALUES('Lacricma Del Vesuvio','Napoli',100);
+INSERT INTO Vigneto(NomeV,ComuneV,Estensione)  VALUES('Lacrima Del Vesuvio','Napoli',100);
 
 INSERT INTO Intervento(Num_Fattura_Intervento,Tipo_Intervento,Costo_Intervento)  VALUES(648157,'Potatura',150);
 
-INSERT INTO Intervento_Subito(NomeV,ComuneV,Num_Fattura_Intervento,Data_Intervento)  VALUES('Lacricma Del Vesuvio','Napoli',648157,TO_DATE('03/06/2018', 'DD/MM/YYYY'));
+INSERT INTO Intervento_Subito(NomeV,ComuneV,Num_Fattura_Intervento,Data_Intervento)  VALUES('Lacrima Del Vesuvio','Napoli',648157,TO_DATE('03/06/2018', 'DD/MM/YYYY'));
 
 INSERT INTO Trattamento(Num_Fattura_Trattamento,Nome_Trattamento,Princ_Att_Prod,Costo_Trattamento)  VALUES(648572,'Pesticida','Pesticida1',250);
 
-INSERT INTO Trattamento_Subito(NomeV,ComuneV,Num_Fattura_Trattamento,Data_Trattamento)  VALUES('Lacricma Del Vesuvio','Napoli',648572,TO_DATE('12/10/2018', 'DD/MM/YYYY'));
+INSERT INTO Trattamento_Subito(NomeV,ComuneV,Num_Fattura_Trattamento,Data_Trattamento)  VALUES('Lacrima Del Vesuvio','Napoli',648572,TO_DATE('12/10/2018', 'DD/MM/YYYY'));
 
-INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta)  VALUES('Piedirosso',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Lacricma Del Vesuvio','Napoli',800,400);
-INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta)  VALUES('Aglianico',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Lacricma Del Vesuvio','Napoli',200,400);
+INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta)  VALUES('Piedirosso',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Lacrima Del Vesuvio','Napoli',800,400);
+INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Costo_Raccolta)  VALUES('Aglianico',TO_DATE('12/12/2019', 'DD/MM/YYYY'),'Lacrima Del Vesuvio','Napoli',200,400);
 
 INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede)  VALUES('Via nazionale 256','80100','Napoli','Cristo Vinificatore');
 
