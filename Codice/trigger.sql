@@ -13,7 +13,9 @@ EXCEPTION
 WHEN ERRORE THEN
 RAISE_APPLICATION_ERROR(-20000,'Numero Bottiglieper confezione dev essere divisibile per 3!');
 END;
-# -----------------------------------------2-------------------------------- #
+
+-----------------------------------------2--------------------------------
+
 CREATE OR REPLACE TRIGGER Certificato_presente
 BEFORE INSERT on Controllo_Certificazione
 FOR EACH ROW
@@ -31,7 +33,7 @@ EXCEPTION
 WHEN ERRORE THEN
 RAISE_APPLICATION_ERROR(-20001,'Gia Inserito');
 END;
-# ----------------------------------------3--------------------------------- #
+----------------------------------------3---------------------------------
 CREATE OR REPLACE TRIGGER Supera_100_PC 
 before INSERT or update ON Composizione_Vino 
 FOR EACH ROW 
@@ -55,7 +57,7 @@ BEGIN
     END IF;
     COMMIT; 
 END;
-# ----------------------------------------4----------------------------- #
+ ----------------------------------------4-----------------------------
 CREATE OR REPLACE TRIGGER Limite_Certificazioni
 BEFORE INSERT on Controllo_Certificazione
 FOR EACH ROW
@@ -73,7 +75,7 @@ EXCEPTION
 WHEN others THEN
 RAISE_APPLICATION_ERROR(-20003,'TROPPI CERTIFICATI');
 END;
-# ----------------------------------------5----------------------------- #
+----------------------------------------5----------------------------- 
 CREATE OR REPLACE TRIGGER Limite_Trattamento
 BEFORE INSERT on Trattamento_Subito
 FOR EACH ROW
@@ -89,7 +91,7 @@ EXCEPTION
 WHEN others THEN
     RAISE_APPLICATION_ERROR(-20004,'VIGNETO GIA TRATTATO DA MENO DI DUE MESI');
 END;
-# -----------------------------------------6----------------------------- #
+ -----------------------------------------6----------------------------- 
 CREATE OR REPLACE TRIGGER Limite_Intervento
 BEFORE INSERT on Intervento_Subito
 FOR EACH ROW
@@ -105,7 +107,7 @@ EXCEPTION
 WHEN others THEN
     RAISE_APPLICATION_ERROR(-20005,' Gia Fatto Intervento DA MENO DI Tre Settimane');
 END;
-# -----------------------------------------7----------------------------- #
+ -----------------------------------------7----------------------------- 
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Vino
 BEFORE INSERT on Lotto_Vino
 FOR EACH ROW
@@ -120,7 +122,7 @@ IF (:NEW.Quantita_Vino - MOSTO) < 0  THEN
     :NEW.Quantita_Vino := MOSTO;
 END IF;
 END;
-# ------------------------------------------8----------------------------- #
+ ------------------------------------------8----------------------------- 
 CREATE OR REPLACE TRIGGER Controllo_Quantita_Raccolto
 BEFORE INSERT on Pigiatura
 FOR EACH ROW
