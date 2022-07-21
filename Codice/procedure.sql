@@ -103,7 +103,6 @@ UPDATE Confezione set Codice_Acquisto = RANDOM where Num_Conf = (SELECT Num_Conf
 COMMIT;
 dbms_output.put_line('acquisto segnato con numero ordine:' || RANDOM); 
 
-
 WHEN NO_DATA_FOUND THEN
 dbms_output.put_line('Non e presente nessuna scatola da acquistare'); 
 END;
