@@ -128,7 +128,7 @@ DECLARE
 CONTATORE1 Number;
 BEGIN
 SELECT (Quantita_Raccolto) INTO CONTATORE1 FROM Raccolto_Vigneto WHERE (Specie = :NEW.Specie AND Data_Racc = :NEW.Data_Racc);
-IF (:NEW.Quantita_Uva - CONTATORE1) < 0  THEN 
+IF (CONTATORE1 - :NEW.Quantita_Uva ) < 0  THEN 
     RAISE_APPLICATION_ERROR(-20008,' La quantita di uva usata non puo superare la quantita di uva raccolta');
 END IF;
 END; 
