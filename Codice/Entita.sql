@@ -124,7 +124,7 @@ CREATE TABLE Pigiatura(
     Costo_Pigiatura Number NOT NULL,
 
     CONSTRAINT CE_Mosto_Pigiatura FOREIGN KEY (Num_Lotto_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto) ON DELETE CASCADE,
-    CONSTRAINT CE_Raccolto_Vigneto_Pigiatura FOREIGN KEY (Specie,Data_Racc)  REFERENCES Tipo_Uva(Specie,Data_Racc) ON DELETE CASCADE,
+    CONSTRAINT CE_Raccolto_Vigneto_Pigiatura FOREIGN KEY (Specie,Data_Racc)  REFERENCES Raccolta_Vigneto(Specie,Data_Racc) ON DELETE CASCADE,
     CONSTRAINT CP_PIG PRIMARY KEY (Specie,Num_Lotto_Mosto)
 );
 
