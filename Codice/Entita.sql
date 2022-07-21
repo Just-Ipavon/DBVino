@@ -119,12 +119,13 @@ CREATE TABLE Mosto(
 CREATE TABLE Pigiatura(
     Num_Lotto_Mosto Number(4,0) NOT NULL,
     Specie varchar(255) NOT NULL,
-    Data_Raccolto_Usato DATE NOT NULL,
+    Data_Racc DATE NOT NULL,
     Quantita_Uva Number NOT NULL,
     Costo_Pigiatura Number NOT NULL,
 
     CONSTRAINT CE_Mosto_Pigiatura FOREIGN KEY (Num_Lotto_Mosto)  REFERENCES Mosto(Num_Lotto_Mosto) ON DELETE CASCADE,
-    CONSTRAINT CE_Tipo_Uva_Pigiatura FOREIGN KEY (Specie)  REFERENCES Tipo_Uva(Specie) ON DELETE CASCADE
+    CONSTRAINT CE_Raccolto_Vigneto_Pigiatura FOREIGN KEY (Specie,Data_Racc)  REFERENCES Tipo_Uva(Specie,Data_Racc) ON DELETE CASCADE,
+    CONSTRAINT CP_PIG PRIMARY KEY (Specie,Num_Lotto_Mosto)
 );
 
 
@@ -219,8 +220,8 @@ CREATE TABLE Intervento_Subito(
     Data_Intervento DATE NOT NULL,
 
     CONSTRAINT CE_Vigneto_Interventi_Subiti FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,
-    CONSTRAINT CE_Intervento_Interventi_Subiti FOREIGN KEY (Num_Fattura_Intervento) REFERENCES Intervento (Num_Fattura_Intervento) ON DELETE CASCADE
-    
+    CONSTRAINT CE_Intervento_Interventi_Subiti FOREIGN KEY (Num_Fattura_Intervento) REFERENCES Intervento (Num_Fattura_Intervento) ON DELETE CASCADE,
+    CONSTRAINT CP_INT PRIMARY KEY (NomeV,ComuneV,Num_Fattura_Intervento)
 );
 
 CREATE TABLE Produzione_Vigneto(
@@ -229,8 +230,8 @@ CREATE TABLE Produzione_Vigneto(
     Specie varchar(255) NOT NULL,
     
     CONSTRAINT CE_Vigneto_Produzione FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,
-    CONSTRAINT CE_Tipo_Uva_Produzione FOREIGN KEY (Specie) REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE
-    
+    CONSTRAINT CE_Tipo_Uva_Produzione FOREIGN KEY (Specie) REFERENCES Tipo_Uva (Specie) ON DELETE CASCADE,
+    CONSTRAINT CP_PV PRIMARY KEY (NomeV,ComuneV,Specie)
 );
 
 CREATE TABLE Trattamento_Subito(  
@@ -240,7 +241,7 @@ CREATE TABLE Trattamento_Subito(
     Data_Trattamento DATE NOT NULL,
       
     CONSTRAINT CE_Vigneto_Trattamento_Subito FOREIGN KEY (NomeV, ComuneV) REFERENCES Vigneto (NomeV, ComuneV) ON DELETE CASCADE,  
-    CONSTRAINT CE_Trattamento_Trattamento_Subito FOREIGN KEY (Num_Fattura_Trattamento) REFERENCES Trattamento (Num_Fattura_Trattamento) ON DELETE CASCADE
-      
+    CONSTRAINT CE_Trattamento_Trattamento_Subito FOREIGN KEY (Num_Fattura_Trattamento) REFERENCES Trattamento (Num_Fattura_Trattamento) ON DELETE CASCADE,
+    CONSTRAINT CP_TRATT PRIMARY KEY (NomeV,ComuneV,Num_Fattura_Trattamento)  
 );
 
