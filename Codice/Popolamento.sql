@@ -29,8 +29,8 @@ INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede)  VALUES('Via nazionale 
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm)  VALUES(1234,'Vinificatoriamo',300,TO_DATE('17/12/2015', 'DD/MM/YYYY'),TO_DATE('17/12/2016', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(1234,'Canaiolo',TO_DATE('12/12/2015', 'DD/MM/YYYY'),60,290);
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(1234,'Sangiovese',TO_DATE('12/12/2015', 'DD/MM/YYYY'),10,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(1234,'Canaiolo',TO_DATE('12/12/2015', 'DD/MM/YYYY'),60,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(1234,'Sangiovese',TO_DATE('12/12/2015', 'DD/MM/YYYY'),10,290);
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott)  VALUES('Imbottigliamo','via nazionale','50025','Montespertoli');
 
@@ -76,7 +76,7 @@ INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede)  VALUES('Via nazionale 
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm)  VALUES(2135,'Vivailvino',300,TO_DATE('17/12/2015', 'DD/MM/YYYY'),TO_DATE('17/12/2016', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(2135,'Falanghina',TO_DATE('12/12/2015', 'DD/MM/YYYY'),10,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(2135,'Falanghina',TO_DATE('12/12/2019', 'DD/MM/YYYY'),10,290);
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott)  VALUES('Marcianise Imbott','via nazionale','81025','marcianise');
 
@@ -121,7 +121,7 @@ INSERT INTO Raccolto_Vigneto(Specie,Data_Racc,NomeV,ComuneV,Quantita_Raccolto,Co
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm)  VALUES(5463,'Vivailvino',300,TO_DATE('14/05/2013', 'DD/MM/YYYY'),TO_DATE('17/12/2013', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(5463,'Aglianico',TO_DATE('07/05/2013', 'DD/MM/YYYY'),10,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(5463,'Aglianico',TO_DATE('05/05/2013', 'DD/MM/YYYY'),10,290);
 
 --INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott)  VALUES('Imbottigliamo','via nazionale','81025','marcianise');
 
@@ -170,8 +170,8 @@ INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede)  VALUES('Via nazionale 
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm)  VALUES(8461,'Cristo Vinificatore',300,TO_DATE('17/12/2019', 'DD/MM/YYYY'),TO_DATE('17/12/2020', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(8461,'Piedirosso',TO_DATE('04/01/2020', 'DD/MM/YYYY'),800,290);
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(8461,'Aglianico',TO_DATE('04/01/2020', 'DD/MM/YYYY'),200,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(8461,'Piedirosso',TO_DATE('12/12/2019', 'DD/MM/YYYY'),800,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(8461,'Aglianico',TO_DATE('12/12/2019', 'DD/MM/YYYY'),200,290);
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott)  VALUES('Imbottiglia vino','via nazionale','80100','Napoli');
 
@@ -216,7 +216,7 @@ INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede) VALUES('Via Cosenza 5',
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm)  VALUES(2100,'Sede Vino',180,TO_DATE('31/01/2021', 'DD/MM/YYYY'),TO_DATE('02/03/2021', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(2100,'Traminer',TO_DATE('29/11/2020', 'DD/MM/YYYY'),90,200);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(2100,'Traminer',TO_DATE('29/11/2020', 'DD/MM/YYYY'),90,200);
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Bottiamoci','via Tutti 1','81021','Napoli');
 
@@ -262,7 +262,7 @@ INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede)  VALUES('Via nazionale 
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm)  VALUES(5275,'Vini del monte',300,TO_DATE('17/12/2015', 'DD/MM/YYYY'),TO_DATE('17/12/2016', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(5275,'Nebbiolo',TO_DATE('12/12/2015', 'DD/MM/YYYY'),10,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(5275,'Nebbiolo',TO_DATE('12/12/2019', 'DD/MM/YYYY'),10,290);
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott)  VALUES('Imbottiglia Sul Monte','via nazionale','10060','Candiolo');
 
@@ -309,7 +309,7 @@ INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede)  VALUES('Via nazionale 
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm)  VALUES(4120,'Vini della valle',300,TO_DATE('17/12/2015', 'DD/MM/YYYY'),TO_DATE('17/12/2016', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(4120,'Chardonnay',TO_DATE('12/12/2015', 'DD/MM/YYYY'),10,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(4120,'Chardonnay',TO_DATE('12/12/2019', 'DD/MM/YYYY'),10,290);
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott)  VALUES('Imbottiglia alla valle','via nazionale','10060','Candiolo');
 
@@ -355,7 +355,7 @@ INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede) VALUES('Via dei Prati 2
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm) VALUES(5103,'Vini Siculi',200,TO_DATE('18/12/2018', 'DD/MM/YYYY'),TO_DATE('19/1/2019', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(5103,'Gaglioppo',TO_DATE('24/2/2019', 'DD/MM/YYYY'),170,90);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(5103,'Gaglioppo',TO_DATE('15/12/2018', 'DD/MM/YYYY'),170,90);
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott) VALUES('Imbottigliatore Palermo','Via Palermo 1','90121','Palermo');
 
@@ -401,7 +401,7 @@ INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede)  VALUES('Via dei campi 
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm)  VALUES(5102,'Vini isolani',300,TO_DATE('17/12/2015', 'DD/MM/YYYY'),TO_DATE('17/12/2016', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(5102,'Catarratto',TO_DATE('12/12/2015', 'DD/MM/YYYY'),10,290);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(5102,'Catarratto',TO_DATE('12/12/2019', 'DD/MM/YYYY'),10,290);
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott)  VALUES('Imbottigliatore etna','via nazionale','90121','Palermo');
 
@@ -453,7 +453,7 @@ INSERT INTO Sede_Vinif(Via_Sv,CAP_Sv,Citta_Sv,Nome_Sede)
 
 INSERT INTO Mosto(Num_Lotto_Mosto,Nome_Sede,Costo_Trasporto,Data_Inizio_Ferm,Data_Fine_Ferm)  VALUES(2101,'La Vineria',190,TO_DATE('30/01/2012', 'DD/MM/YYYY'),TO_DATE('14/02/2012', 'DD/MM/YYYY'));
 
-INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Raccolto_Usato,Quantita_Uva,Costo_Pigiatura)  VALUES(2101,'Sangiovese',TO_DATE('18/02/2011', 'DD/MM/YYYY'),75,50);
+INSERT INTO Pigiatura(Num_Lotto_Mosto,Specie,Data_Racc,Quantita_Uva,Costo_Pigiatura)  VALUES(2101,'Sangiovese',TO_DATE('29/11/2011', 'DD/MM/YYYY'),75,50);
 
 INSERT INTO Imbottigliatore(Nome_Imbott,Via_Imbott,CAP_Imbott,Citta_Imbott)
  VALUES('Abbottiamoci','via Botti 21','81028','Genova');
