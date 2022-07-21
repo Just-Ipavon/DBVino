@@ -74,7 +74,7 @@ select (Nome_Trattamento) into Nome_Tratt from Trattamento where(Num_Fattura_Tra
 select (Tipo_Intervento) into Nome_Int from Intervento where(Num_Fattura_Intervento = Num_Fatt_Int);
 end;
 
-
+-------------------------------
 
 CREATE OR REPLACE PROCEDURE Acquisto (in_Ragione_Sociale varchar2, in_Nome_Vino varchar2, in_Data_Lotto DATE)  
 IS 
