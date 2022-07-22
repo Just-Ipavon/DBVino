@@ -93,16 +93,7 @@ dbms_output.put_line('acquisto segnato con numero ordine:' || RANDOM);
 EXCEPTION
 
 WHEN DUP_VAL_ON_INDEX THEN
-
-SELECT Num_Lotto into NUM_LOTTO FROM ( SELECT Num_Lotto FROM Lotto_Vino where Data_Lotto >= In_Data_Lotto AND Nome_Vino = In_Nome_Vino ORDER BY dbms_random.value )WHERE rownum = 1;
-select dbms_random.value(100000,999999) num into RANDOM from dual;
-dbms_output.put_line('Ha scelto il vino: ' || In_Nome_Vino); 
-Vino_Tavola(in_Nome_Vino);
-INSERT INTO Carrello(Codice_Acquisto,Data_Acquisto,Ragione_Sociale) VALUES(RANDOM,TO_DATE(sysdate, 'DD/MM/YYYY'),in_Ragione_Sociale);
-UPDATE Confezione set Codice_Acquisto = RANDOM where Num_Conf = (SELECT Num_Conf FROM ( SELECT Num_Conf FROM Confezione where Codice_Acquisto is NULL AND Nome_Vino = in_Nome_Vino AND Num_Lotto = NUM_LOTTO ORDER BY dbms_random.value ) WHERE rownum = 1);
-COMMIT;
-dbms_output.put_line('acquisto segnato con numero ordine:' || RANDOM); 
-
+    Acquisto(in_Ragione_Sociale,In_Nome_Vino,in_Data_Lotto);
 WHEN NO_DATA_FOUND THEN
 dbms_output.put_line('Non e presente nessuna scatola da acquistare'); 
 END;
